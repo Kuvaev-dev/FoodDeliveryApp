@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1003800656741",
+    "project_id": "eatit-f49ce",
+    "storage_bucket": "eatit-f49ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003800656741:android:eb5be3ed1e53a46f553f8c",
+        "android_client_info": {
+          "package_name": "kuvaev.mainapp.eatit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003800656741-78en9pjg7sle8i0aj9ar6sor5lfau8vk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kuvaev.mainapp.eatit",
+            "certificate_hash": "2cd17b1b67cd5d8f34b33ce99c539e4242a75918"
+          }
+        },
+        {
+          "client_id": "1003800656741-ddj6ujjr2jnu5b0pc39j2tpumncqd7tq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz0UmO5bB9XexKLt5frdKBHkyF749So5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003800656741-ddj6ujjr2jnu5b0pc39j2tpumncqd7tq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
