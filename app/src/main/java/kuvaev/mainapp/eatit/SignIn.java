@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.Objects;
 
+import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Model.User;
 
 public class SignIn extends AppCompatActivity {
@@ -48,7 +50,10 @@ public class SignIn extends AppCompatActivity {
                         User user = snapshot.child(editPhone.getText().toString()).getValue(User.class);
                         assert user != null;
                         if (user.getPassword().equals(Objects.requireNonNull(editPassword.getText()).toString())) {
-                            Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignIn.this, Home.class);
+                            Common.currentUser = user;
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(SignIn.this, "Wrong Password!", Toast.LENGTH_SHORT).show();
                         }

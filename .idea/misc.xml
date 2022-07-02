@@ -4,10 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/EatIt/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1275" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/ic_baseline_restaurant_24.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.127" />
         <entry key="..\:/EatIt/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1275" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/loading.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/drawable/side_nav_bar.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/activity_home.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_sign_in.xml" value="0.19322916666666667" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/app_bar_home.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/content_home.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/menu_item.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/nav_header_home.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/menu/activity_main_drawer.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/menu/home.xml" value="0.1586147926464301" />
       </map>
     </option>
   </component>
