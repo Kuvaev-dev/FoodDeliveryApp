@@ -1,8 +1,6 @@
 package kuvaev.mainapp.eatit;
 
-import android.app.Notification;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -35,7 +33,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import kuvaev.mainapp.eatit.Common.Common;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Category;
 import kuvaev.mainapp.eatit.ViewHolder.MenuViewHolder;
 
