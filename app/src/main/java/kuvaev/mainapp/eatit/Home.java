@@ -33,12 +33,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import kuvaev.mainapp.eatit.Common.Common;
+import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Category;
+import kuvaev.mainapp.eatit.Model.Food;
+import kuvaev.mainapp.eatit.ViewHolder.FoodViewHolder;
 import kuvaev.mainapp.eatit.ViewHolder.MenuViewHolder;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     FirebaseDatabase database;
     DatabaseReference category;
     TextView TextFullName;
@@ -55,13 +57,19 @@ public class Home extends AppCompatActivity
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         // Init Firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
+//        category.keepSynced(true);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            // add to cart
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // add to cart
+            }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -71,10 +79,11 @@ public class Home extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Set name for user
-        View headerView = navigationView.getHeaderView(0);
-        TextFullName = headerView.findViewById(R.id.txtFullName);
-        TextFullName.setText(Common.currentUser.getName());
+
+//         set name for user
+//        View headerView = navigationView.getHeaderView(0);
+//        TextFullName = headerView.findViewById(R.id.txtFullName);
+//        TextFullName.setText(Common.currentUser.getName());
 
         // Load menu
         recycler_menu = findViewById(R.id.recycler_menu);
@@ -94,13 +103,19 @@ public class Home extends AppCompatActivity
             protected void onBindViewHolder(@NonNull final MenuViewHolder menuViewHolder, int i,
                                             @NonNull final Category category) {
 
-
                 Picasso.get().load(category.getImage()).placeholder(R.drawable.loading).fit().into(menuViewHolder.imageView);
 
                 menuViewHolder.txtMenuName.setText(category.getName());
-                // final Category clickItem = category;
-                menuViewHolder.setItemClickListener((view, position, isLongClick) -> {
-
+//                final Category clickItem = category;
+                menuViewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        // get category id and send it to the new activity.
+                        Intent foodIntent = new Intent(Home.this, FoodList.class);
+                        // category id is key,we just get the key of this item
+                        foodIntent.putExtra("CategoryId", adapter.getRef(position).getKey());
+                        startActivity(foodIntent);
+                    }
                 });
             }
 
@@ -135,14 +150,14 @@ public class Home extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         return super.onOptionsItemSelected(item);
     }
@@ -153,10 +168,14 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_menu) {
+            Intent menuIntent = new Intent(Home.this, Home.class);
+            startActivity(menuIntent);
 
         } else if (id == R.id.nav_cart) {
 
+
         } else if (id == R.id.nav_orders) {
+
 
         } else if (id == R.id.nav_log_out) {
             Intent mainActivity = new Intent(Home.this, MainActivity.class);
