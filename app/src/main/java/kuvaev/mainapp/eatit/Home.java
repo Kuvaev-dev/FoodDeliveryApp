@@ -43,6 +43,7 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference category;
+
     TextView TextFullName;
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager linearLayoutManager;
@@ -57,19 +58,13 @@ public class Home extends AppCompatActivity
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
         // Init Firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
-//        category.keepSynced(true);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // add to cart
-            }
+        fab.setOnClickListener(view -> {
+            // add to cart
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -80,16 +75,18 @@ public class Home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-//         set name for user
-//        View headerView = navigationView.getHeaderView(0);
-//        TextFullName = headerView.findViewById(R.id.txtFullName);
-//        TextFullName.setText(Common.currentUser.getName());
+        // Set name for user
+        View headerView = navigationView.getHeaderView(0);
+        TextFullName = headerView.findViewById(R.id.txtFullName);
+        TextFullName.setText(Common.currentUser.getName());
 
         // Load menu
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recycler_menu.setLayoutManager(linearLayoutManager);
+
+        loadMenu();
     }
 
     private void loadMenu() {
@@ -106,7 +103,7 @@ public class Home extends AppCompatActivity
                 Picasso.get().load(category.getImage()).placeholder(R.drawable.loading).fit().into(menuViewHolder.imageView);
 
                 menuViewHolder.txtMenuName.setText(category.getName());
-//                final Category clickItem = category;
+                final Category clickItem = category;
                 menuViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -118,7 +115,6 @@ public class Home extends AppCompatActivity
                     }
                 });
             }
-
 
             @NonNull
             @Override
@@ -138,12 +134,7 @@ public class Home extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-
         } else {
-            Intent startMain = new Intent(Intent.ACTION_MAIN);
-            startMain.addCategory(Intent.CATEGORY_HOME);
-            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(startMain);
             super.onBackPressed();
         }
 
@@ -158,7 +149,6 @@ public class Home extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         return super.onOptionsItemSelected(item);
     }
 

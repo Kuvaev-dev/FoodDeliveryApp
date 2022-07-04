@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSignUp = findViewById(R.id.btnSignUp);
-        txtSlogan = findViewById(R.id.txtSlogan);
 
         btnSignIn.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, SignIn.class);
