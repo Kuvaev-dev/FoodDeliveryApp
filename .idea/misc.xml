@@ -13,6 +13,7 @@
         <entry key="..\:/EatIt/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1275" />
         <entry key="..\:/EatIt/app/src/main/res/drawable/loading.xml" value="0.127" />
         <entry key="..\:/EatIt/app/src/main/res/drawable/side_nav_bar.xml" value="0.127" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/activity_cart.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_food_detail.xml" value="0.22" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_food_details.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_food_list.xml" value="0.1586147926464301" />
@@ -21,6 +22,7 @@
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_sign_in.xml" value="0.19322916666666667" />
         <entry key="..\:/EatIt/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/EatIt/app/src/main/res/layout/app_bar_home.xml" value="0.1586147926464301" />
+        <entry key="..\:/EatIt/app/src/main/res/layout/cart_layout.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/content_home.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/food_item.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/layout/menu_item.xml" value="0.1586147926464301" />

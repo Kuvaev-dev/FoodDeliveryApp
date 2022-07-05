@@ -5,7 +5,6 @@ public class Category {
     private String Image;
 
     public Category() {
-
     }
 
     public Category(String name, String image) {

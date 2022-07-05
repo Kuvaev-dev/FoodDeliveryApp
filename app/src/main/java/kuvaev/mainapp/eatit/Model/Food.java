@@ -1,66 +1,72 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class Food {
-    private String Name, Image, Description, Price, Discount, MenuId;
+    private String Name , Image , Description , Price , Discount , MenuId , fooId;
 
-    public Food(){
+    public Food() { }
 
+    public Food(String name, String image, String description, String price, String discount, String menuId) {
+        Name = name;
+        Image = image;
+        Description = description;
+        Price = price;
+        Discount = discount;
+        MenuId = menuId;
     }
 
-    public Food(String Name, String Image, String Description, String Price, String Discount, String MenuId) {
-        this.Name = Name;
-        this.Image = Image;
-        this.Description = Description;
-        this.Price = Price;
-        this.Discount = Discount;
-        this.MenuId = MenuId;
+    public String getFooId() {
+        return fooId;
+    }
+
+    public void setFooId(String fooId) {
+        this.fooId = fooId;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getImage() {
         return Image;
     }
 
-    public void setImage(String Image) {
-        this.Image = Image;
+    public void setImage(String image) {
+        Image = image;
     }
 
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public String getPrice() {
         return Price;
     }
 
-    public void setPrice(String Price) {
-        this.Price = Price;
+    public void setPrice(String price) {
+        Price = price;
     }
 
     public String getDiscount() {
         return Discount;
     }
 
-    public void setDiscount(String Discount) {
-        this.Discount = Discount;
+    public void setDiscount(String discount) {
+        Discount = discount;
     }
 
     public String getMenuId() {
         return MenuId;
     }
 
-    public void setMenuId(String MenuId) {
-        this.MenuId = MenuId;
+    public void setMenuId(String menuId) {
+        MenuId = menuId;
     }
 }
