@@ -35,8 +35,6 @@ import android.widget.TextView;
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Category;
-import kuvaev.mainapp.eatit.Model.Food;
-import kuvaev.mainapp.eatit.ViewHolder.FoodViewHolder;
 import kuvaev.mainapp.eatit.ViewHolder.MenuViewHolder;
 
 public class Home extends AppCompatActivity
@@ -108,7 +106,7 @@ public class Home extends AppCompatActivity
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         // get category id and send it to the new activity.
-                        Intent foodIntent = new Intent(Home.this, FoodList.class);
+                        Intent foodIntent = new Intent(Home.this, FoodListActivity.class);
                         // category id is key,we just get the key of this item
                         foodIntent.putExtra("CategoryId", adapter.getRef(position).getKey());
                         startActivity(foodIntent);

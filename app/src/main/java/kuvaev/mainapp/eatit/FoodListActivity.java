@@ -22,7 +22,7 @@ import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Food;
 import kuvaev.mainapp.eatit.ViewHolder.FoodViewHolder;
 
-public class FoodList extends AppCompatActivity {
+public class FoodListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 

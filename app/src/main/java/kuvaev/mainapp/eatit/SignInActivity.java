@@ -21,7 +21,7 @@ import java.util.Objects;
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Model.User;
 
-public class SignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     MaterialEditText editPhone, editPassword;
     Button btnSignIn;
 
@@ -38,7 +38,7 @@ public class SignIn extends AppCompatActivity {
         final DatabaseReference table_user = database.getReference("User");
 
         btnSignIn.setOnClickListener(view -> {
-            ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+            ProgressDialog mDialog = new ProgressDialog(SignInActivity.this);
             mDialog.setMessage("Please wait...");
             mDialog.show();
 
@@ -50,16 +50,16 @@ public class SignIn extends AppCompatActivity {
                         User user = snapshot.child(editPhone.getText().toString()).getValue(User.class);
                         assert user != null;
                         if (user.getPassword().equals(Objects.requireNonNull(editPassword.getText()).toString())) {
-                            Intent intent = new Intent(SignIn.this, Home.class);
+                            Intent intent = new Intent(SignInActivity.this, Home.class);
                             Common.currentUser = user;
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(SignIn.this, "Wrong Password!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Wrong Password!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         mDialog.dismiss();
-                        Toast.makeText(SignIn.this, "User not exist!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "User not exist!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

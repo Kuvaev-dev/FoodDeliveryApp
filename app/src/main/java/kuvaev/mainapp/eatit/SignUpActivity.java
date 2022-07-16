@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import kuvaev.mainapp.eatit.Model.User;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     MaterialEditText editPhone, editName, editPassword;
     Button btnSignUp;
 
@@ -37,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         final DatabaseReference table_user = database.getReference("User");
 
         btnSignUp.setOnClickListener(view -> {
-            ProgressDialog mDialog = new ProgressDialog(SignUp.this);
+            ProgressDialog mDialog = new ProgressDialog(SignUpActivity.this);
             mDialog.setMessage("Please wait...");
             mDialog.show();
 
@@ -46,7 +46,7 @@ public class SignUp extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.child(Objects.requireNonNull(editPhone.getText()).toString()).exists()) {
                         mDialog.dismiss();
-                        Toast.makeText(SignUp.this, "Phone number already exist!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Phone number already exist!", Toast.LENGTH_SHORT).show();
                     } else {
                         mDialog.dismiss();
                         User user = new User(
@@ -54,7 +54,7 @@ public class SignUp extends AppCompatActivity {
                                 Objects.requireNonNull(editPassword.getText()).toString()
                         );
                         table_user.child(editPhone.getText().toString()).setValue(user);
-                        Toast.makeText(SignUp.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }

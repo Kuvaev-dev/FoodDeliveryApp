@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="kuvaev.mainapp.eatit"
-xmlns:tools="http://schemas.android.com/tools"
-tools:replace="android:theme">
+    package="kuvaev.mainapp.eatit"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:replace="android:theme">
 
 <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,26 +14,43 @@ tools:replace="android:theme">
     android:supportsRtl="true"
     tools:replace="android:theme">
     <activity
-        android:name=".FoodList"
+        android:name=".FoodListActivity"
         android:exported="false" />
     <activity
-        android:name=".FoodDetail"
+        android:name=".FoodDetailActivity"
         android:exported="false" />
     <activity
         android:name=".Home"
         android:exported="false" />
     <activity
-        android:name=".SignUp"
+        android:name=".SignUpActivity"
         android:exported="false" />
     <activity
-        android:name=".SignIn"
+        android:name=".SignInActivity"
+        android:exported="false" />
+    <activity
+        android:name=".CartActivity"
+        android:exported="false" />
+    <activity
+        android:name=".FavouritesActivity"
+        android:exported="false" />
+    <activity
+        android:name=".OrderStatusActivity"
+        android:exported="false" />
+    <activity
+        android:name=".SearchActivity"
+        android:exported="false" />
+    <activity
+        android:name=".ShowCommentActivity"
+        android:exported="false" />
+    <activity
+        android:name=".TrackingOrderActivity"
         android:exported="false" />
     <activity
         android:name=".MainActivity"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>

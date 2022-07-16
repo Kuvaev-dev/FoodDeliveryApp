@@ -3,11 +3,11 @@ package kuvaev.mainapp.eatit;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class FoodDetail extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_detail);
+        setContentView(R.layout.activity_cart);
     }
 }
