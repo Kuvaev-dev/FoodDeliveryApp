@@ -53,6 +53,9 @@ dependencies {
     implementation "com.github.kojofosu:Quantitizer:1.6.7"
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.jupiter:junit-jupiter'
