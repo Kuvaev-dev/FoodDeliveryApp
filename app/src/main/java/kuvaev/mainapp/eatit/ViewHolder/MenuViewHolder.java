@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kuvaev.mainapp.eatit.Interface.ItemClickListener;
@@ -16,11 +15,11 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private ItemClickListener itemClickListener;
 
-    public MenuViewHolder(@NonNull View itemView) {
+    public MenuViewHolder(View itemView) {
         super(itemView);
 
-        txtMenuName = itemView.findViewById(R.id.menu_name);
-        imageView = itemView.findViewById(R.id.menu_image);
+        txtMenuName = (TextView)itemView.findViewById(R.id.menu_name);
+        imageView = (ImageView)itemView.findViewById(R.id.menu_image);
 
         itemView.setOnClickListener(this);
     }
@@ -31,6 +30,6 @@ public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        itemClickListener.onClick(v, getBindingAdapterPosition(), false);
+        itemClickListener.onClick(v , getBindingAdapterPosition() , false);
     }
 }
