@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/ckb_sub_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Material.Drawable.CheckBox"
+            android:text="@string/setting_name"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center_vertical"
+            app:cbd_strokeColor="@color/colorPrimary"
+            app:cbd_tickColor="@android:color/white"
+            android:layout_marginLeft="8dp"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -17,19 +17,17 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.EatIt.PopupOverlay"/>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_home"/>
+    <include layout="@layout/content_home" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.andremion.counterfab.CounterFab
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@android:color/white"
-        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
-        app:badgeBackgroundColor="@color/colorPrimary"
-        tools:targetApi="lollipop"/>
+        app:backgroundTint="@android:color/white"
+        app:srcCompat="@drawable/ic_shopping_cart_black_24dp"
+        app:badgeBackgroundColor="@color/colorPrimary"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
