@@ -30,6 +30,19 @@
         <entry key="..\:/EatIt/app/src/main/res/menu/activity_main_drawer.xml" value="0.1586147926464301" />
         <entry key="..\:/EatIt/app/src/main/res/menu/home.xml" value="0.1586147926464301" />
         <entry key="..\:/diploma/EatIt/app/src/main/res/drawable/side_nav_bar.xml" value="0.1975" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/activity_cart.xml" value="0.1586147926464301" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/favourites_item.xml" value="0.19322916666666667" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_cart.xml" value="0.15775972637879435" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_change_name.xml" value="0.1" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_change_password.xml" value="0.1586147926464301" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_forgot_password.xml" value="0.1921875" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_home_address.xml" value="0.46375" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_order.xml" value="0.15775972637879435" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_order_address_comment.xml" value="0.15775972637879435" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_setting.xml" value="0.1586147926464301" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/layout/layout_show_comment.xml" value="0.15775972637879435" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/menu/activity_main_drawer.xml" value="0.1586147926464301" />
+        <entry key="..\:/diploma/EatIt/app/src/main/res/menu/home.xml" value="0.1586147926464301" />
       </map>
     </option>
   </component>
