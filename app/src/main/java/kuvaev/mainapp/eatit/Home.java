@@ -1,5 +1,6 @@
 package kuvaev.mainapp.eatit;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -64,6 +65,7 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(view -> {
             // add to cart
         });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,7 +73,6 @@ public class Home extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
 
         // Set name for user
         View headerView = navigationView.getHeaderView(0);
@@ -87,6 +88,7 @@ public class Home extends AppCompatActivity
         loadMenu();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadMenu() {
         FirebaseRecyclerOptions<Category> options =
                 new FirebaseRecyclerOptions.Builder<Category>()
@@ -101,16 +103,12 @@ public class Home extends AppCompatActivity
                 Picasso.get().load(category.getImage()).placeholder(R.drawable.loading).fit().into(menuViewHolder.imageView);
 
                 menuViewHolder.txtMenuName.setText(category.getName());
-                final Category clickItem = category;
-                menuViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        // get category id and send it to the new activity.
-                        Intent foodIntent = new Intent(Home.this, FoodListActivity.class);
-                        // category id is key,we just get the key of this item
-                        foodIntent.putExtra("CategoryId", adapter.getRef(position).getKey());
-                        startActivity(foodIntent);
-                    }
+                menuViewHolder.setItemClickListener((view, position, isLongClick) -> {
+                    // get category id and send it to the new activity.
+                    Intent foodIntent = new Intent(Home.this, FoodListActivity.class);
+                    // category id is key,we just get the key of this item
+                    foodIntent.putExtra("CategoryId", adapter.getRef(position).getKey());
+                    startActivity(foodIntent);
                 });
             }
 
@@ -126,7 +124,6 @@ public class Home extends AppCompatActivity
         recycler_menu.setAdapter(adapter);
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -139,14 +136,14 @@ public class Home extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
 
@@ -158,18 +155,18 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_menu) {
             Intent menuIntent = new Intent(Home.this, Home.class);
             startActivity(menuIntent);
-
         } else if (id == R.id.nav_cart) {
-
-
+            Intent cartIntent = new Intent(Home.this, CartActivity.class);
+            startActivity(cartIntent);
         } else if (id == R.id.nav_orders) {
-
-
+            Intent ordersIntent = new Intent(Home.this, OrderStatusActivity.class);
+            startActivity(ordersIntent);
         } else if (id == R.id.nav_log_out) {
             Intent mainActivity = new Intent(Home.this, MainActivity.class);
             mainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainActivity);
         }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

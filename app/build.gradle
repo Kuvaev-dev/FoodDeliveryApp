@@ -62,6 +62,10 @@ dependencies {
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     implementation 'com.google.android.gms:play-services:20.0.0'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
+    implementation 'com.google.firebase:firebase-config:21.1.1'
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation 'com.stepstone.apprating:app-rating:2.3.1'
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.jupiter:junit-jupiter'
