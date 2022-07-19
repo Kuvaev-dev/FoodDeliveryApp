@@ -66,6 +66,9 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     implementation 'com.stepstone.apprating:app-rating:2.3.1'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation 'io.github.pilgr:paperdb:2.7.2'
+    implementation 'com.facebook.android:account-kit-sdk:'
+    implementation 'com.facebook.android:facebook-android-sdk:'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.junit.jupiter:junit-jupiter'
