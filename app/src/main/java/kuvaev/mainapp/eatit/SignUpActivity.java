@@ -222,7 +222,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 loginHome(phone);
             })
-            .addOnFailureListener(e -> Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show());
+            .addOnFailureListener(e -> Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     private void loginHome(final String phone) {
@@ -232,7 +232,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         User localUser = dataSnapshot.getValue(User.class);
 
-                        Intent homeIntent = new Intent(SignUp.this, Home.class);
+                        Intent homeIntent = new Intent(SignUpActivity.this, Home.class);
                         Common.currentUser = localUser;
                         assert Common.currentUser != null;
                         Common.currentUser.setPhone(phone);
