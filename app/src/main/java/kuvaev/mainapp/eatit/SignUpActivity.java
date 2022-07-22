@@ -4,20 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accounts.Account;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
+import com.facebook.accountkit.Account;
+import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
+import com.facebook.accountkit.AccountKitError;
+import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.ui.AccountKitActivity;
+import com.facebook.accountkit.ui.AccountKitConfiguration;
+import com.facebook.accountkit.ui.LoginType;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,12 +63,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_up);
 
-        edtPhone = (MaterialEditText)findViewById(R.id.edtPhone);
-        edtName = (MaterialEditText)findViewById(R.id.edtName);
-        edtPassword = (MaterialEditText)findViewById(R.id.edtPassword);
-        edtSecureCode = (MaterialEditText)findViewById(R.id.edtSecureCode);
-        btnSignUp = (Button)findViewById(R.id.btnSignUp);
-        facebookSignUp = (LinearLayout)findViewById(R.id.SignUpFaceBook);
+        edtPhone = findViewById(R.id.edtPhone);
+        edtName = findViewById(R.id.edtName);
+        edtPassword = findViewById(R.id.edtPassword);
+        edtSecureCode = findViewById(R.id.edtSecureCode);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        facebookSignUp = findViewById(R.id.SignUpFaceBook);
 
         //Fix showing characters in MaterialEditText password
         Typeface typeface = Typeface.DEFAULT;
@@ -133,7 +135,6 @@ public class SignUpActivity extends AppCompatActivity {
                     intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION , builder.build());
                     startActivityForResult(intent , REQUEST_CODE);
                 }
-
             }
             else {
                 Toast.makeText(SignUpActivity.this, "Please check your connection !!!", Toast.LENGTH_SHORT).show();

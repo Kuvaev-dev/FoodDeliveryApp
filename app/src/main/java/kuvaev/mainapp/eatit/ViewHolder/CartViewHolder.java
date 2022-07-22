@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
 
 import kuvaev.mainapp.eatit.Common.Common;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
@@ -24,21 +23,15 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public RelativeLayout view_background;
     public LinearLayout view_foreground;
 
-    private ItemClickListener itemClickListener;
-
-    public void setItemClickListener(ItemClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-
     public CartViewHolder(View itemView) {
         super(itemView);
 
-        txt_cart_name = (TextView)itemView.findViewById(R.id.card_item_name);
-        txt_price = (TextView)itemView.findViewById(R.id.card_item_price);
-        btn_quantity = (HorizontalQuantitizer) itemView.findViewById(R.id.btn_quantity);
-        imgCart = (ImageView)itemView.findViewById(R.id.card_item_image);
-        view_background = (RelativeLayout)itemView.findViewById(R.id.view_background);
-        view_foreground = (LinearLayout)itemView.findViewById(R.id.view_foreground);
+        txt_cart_name = itemView.findViewById(R.id.card_item_name);
+        txt_price = itemView.findViewById(R.id.card_item_price);
+        btn_quantity = itemView.findViewById(R.id.btn_quantity);
+        imgCart = itemView.findViewById(R.id.card_item_image);
+        view_background = itemView.findViewById(R.id.view_background);
+        view_foreground = itemView.findViewById(R.id.view_foreground);
 
         itemView.setOnCreateContextMenuListener(this);
     }

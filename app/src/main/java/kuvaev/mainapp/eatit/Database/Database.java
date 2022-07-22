@@ -53,13 +53,13 @@ public class Database extends SQLiteAssetHelper {
         if (c.moveToFirst()) {
             do {
                 result.add(new Order(
-                        c.getString(c.getColumnIndex("UserPhone")),
-                        c.getString(c.getColumnIndex("ProductId")),
-                        c.getString(c.getColumnIndex("ProductName")),
-                        c.getString(c.getColumnIndex("Quantity")),
-                        c.getString(c.getColumnIndex("Price")),
-                        c.getString(c.getColumnIndex("Discount")),
-                        c.getString(c.getColumnIndex("Image")),
+                        c.getString(c.getColumnIndexOrThrow("UserPhone")),
+                        c.getString(c.getColumnIndexOrThrow("ProductId")),
+                        c.getString(c.getColumnIndexOrThrow("ProductName")),
+                        c.getString(c.getColumnIndexOrThrow("Quantity")),
+                        c.getString(c.getColumnIndexOrThrow("Price")),
+                        c.getString(c.getColumnIndexOrThrow("Discount")),
+                        c.getString(c.getColumnIndexOrThrow("Image"))
                 ));
             } while (c.moveToNext());
         }
@@ -188,14 +188,14 @@ public class Database extends SQLiteAssetHelper {
         if (c.moveToFirst()){
             do {
                 result.add(new Favorites(
-                        c.getString(c.getColumnIndex("FoodId")),
-                        c.getString(c.getColumnIndex("FoodName")),
-                        c.getString(c.getColumnIndex("FoodPrice")),
-                        c.getString(c.getColumnIndex("FoodMenuId")),
-                        c.getString(c.getColumnIndex("FoodImage")),
-                        c.getString(c.getColumnIndex("FoodDiscount")),
-                        c.getString(c.getColumnIndex("FoodDescription")),
-                        c.getString(c.getColumnIndex("UserPhone"))
+                        c.getString(c.getColumnIndexOrThrow("FoodId")),
+                        c.getString(c.getColumnIndexOrThrow("FoodName")),
+                        c.getString(c.getColumnIndexOrThrow("FoodPrice")),
+                        c.getString(c.getColumnIndexOrThrow("FoodMenuId")),
+                        c.getString(c.getColumnIndexOrThrow("FoodImage")),
+                        c.getString(c.getColumnIndexOrThrow("FoodDiscount")),
+                        c.getString(c.getColumnIndexOrThrow("FoodDescription")),
+                        c.getString(c.getColumnIndexOrThrow("UserPhone"))
                 ));
             } while (c.moveToNext());
         }

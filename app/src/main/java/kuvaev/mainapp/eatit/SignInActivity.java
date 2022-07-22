@@ -4,10 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accounts.Account;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,6 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.accountkit.Account;
+import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
+import com.facebook.accountkit.AccountKitError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,12 +62,12 @@ public class SignInActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_in);
 
-        edtPhone = (MaterialEditText)findViewById(R.id.edtPhone);
-        edtPassword = (MaterialEditText)findViewById(R.id.edtPassword);
-        btnSignIn = (Button)findViewById(R.id.btnSignIn);
-        ckbRemember = (CheckBox)findViewById(R.id.ckbRemember);
-        txtForgotPwd = (TextView)findViewById(R.id.txtForgotPwd);
-        facebookSignIn = (LinearLayout)findViewById(R.id.SignInFaceBook);
+        edtPhone = findViewById(R.id.edtPhone);
+        edtPassword = findViewById(R.id.edtPassword);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        ckbRemember = findViewById(R.id.ckbRemember);
+        txtForgotPwd = findViewById(R.id.txtForgotPwd);
+        facebookSignIn = findViewById(R.id.SignInFaceBook);
 
         //Fix showing characters in MaterialEditText password
         Typeface typeface = Typeface.DEFAULT;
@@ -149,12 +150,10 @@ public class SignInActivity extends AppCompatActivity {
                 Toast.makeText(SignInActivity.this, "You don't have an account , Please Sign up by your facebook account", Toast.LENGTH_SHORT).show();
                 finish();
             } else { //he have an account
-
                 final AlertDialog dialog = new SpotsDialog(SignInActivity.this);
                 dialog.show();
                 dialog.setCancelable(false);
                 dialog.setMessage("Please waiting...");
-
 
                 AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                     @Override
@@ -169,6 +168,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                         Intent homeIntent = new Intent(SignInActivity.this, Home.class);
                                         Common.currentUser = localUser;
+                                        assert Common.currentUser != null;
                                         Common.currentUser.setPhone(account.getPhoneNumber().toString());
                                         startActivity(homeIntent);
 
@@ -183,7 +183,6 @@ public class SignInActivity extends AppCompatActivity {
                                     }
                                 });
                     }
-
                     @Override
                     public void onError(AccountKitError accountKitError) {
 
@@ -205,8 +204,8 @@ public class SignInActivity extends AppCompatActivity {
         View forgot_view = getLayoutInflater().inflate(R.layout.layout_forgot_password , null);
         builder.setView(forgot_view);
 
-        final MaterialEditText edtPhone = (MaterialEditText)forgot_view.findViewById(R.id.edtPhone);
-        final MaterialEditText edtSecureCode = (MaterialEditText)forgot_view.findViewById(R.id.edtSecureCode);
+        final MaterialEditText edtPhone = forgot_view.findViewById(R.id.edtPhone);
+        final MaterialEditText edtSecureCode = forgot_view.findViewById(R.id.edtSecureCode);
 
         builder.setPositiveButton("YES", (dialog, which) -> {
             //Check if user available

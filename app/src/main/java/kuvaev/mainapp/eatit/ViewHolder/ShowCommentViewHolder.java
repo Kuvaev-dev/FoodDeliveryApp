@@ -15,8 +15,8 @@ public class ShowCommentViewHolder extends RecyclerView.ViewHolder {
     public ShowCommentViewHolder(View itemView) {
         super(itemView);
 
-        txtUserPhone = (TextView)itemView.findViewById(R.id.txtUserPhone);
-        txtComment = (TextView)itemView.findViewById(R.id.txtComment);
-        ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+        txtUserPhone = itemView.findViewById(R.id.txtUserPhone);
+        txtComment = itemView.findViewById(R.id.txtComment);
+        ratingBar = itemView.findViewById(R.id.ratingBar);
     }
 }

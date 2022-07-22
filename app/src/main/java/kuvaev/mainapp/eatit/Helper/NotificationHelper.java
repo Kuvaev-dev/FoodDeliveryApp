@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.net.Uri;
 import android.os.Build;
 
@@ -12,7 +13,7 @@ import androidx.annotation.RequiresApi;
 
 import kuvaev.mainapp.eatit.R;
 
-public class NotificationHelper {
+public class NotificationHelper extends ContextWrapper {
     private static final String ABD_CHANNEL_ID = "kuvaev.mainapp.eatit.KUVAEV";
     private static final String ABD_CHANNEL_NAME = "Eat it";
 

@@ -13,7 +13,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -144,11 +147,11 @@ public class SearchActivity extends AppCompatActivity {
         localDB = new Database(this);
 
         // Init RecyclerView
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_search);
+        recyclerView = findViewById(R.id.recycler_search);
         recyclerView.setVisibility(View.VISIBLE);
 
         // Search
-        materialSearchBar = (MaterialSearchBar)findViewById(R.id.search_bar);
+        materialSearchBar = findViewById(R.id.search_bar);
         materialSearchBar.setHint("Enter your food...");
         // materialSearchBar.setSpeechMode(false);   //no need, becuz we already defined it at XML
         loadSuggest();  // Write function to load Suggest from firebase
@@ -205,31 +208,28 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void loadAllFoods() {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(
-                Food.class,
-                R.layout.food_item,
-                FoodViewHolder.class,
-                foodList)
-        {
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>().build();
+        new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
-            protected void populateViewHolder(final FoodViewHolder viewHolder, final Food model, final int position) {
-
-                viewHolder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext())
+            protected void onBindViewHolder(@NonNull FoodViewHolder orderViewHolder,
+                                            int position,
+                                            @NonNull Food model) {
+                orderViewHolder.food_name.setText(model.getName());
+                Picasso.get()
                         .load(model.getImage())
-                        .into(viewHolder.food_image);
+                        .into(orderViewHolder.food_image);
 
                 // Click to Share
-                viewHolder.share_image.setOnClickListener(v -> Picasso.with(getApplicationContext())
+                orderViewHolder.share_image.setOnClickListener(v -> Picasso.get()
                         .load(model.getImage())
                         .into(target));
 
                 // Add Favorites
                 if (localDB.isFavorites(adapter.getRef(position).getKey(), Common.currentUser.getPhone()))
-                    viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+                    orderViewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
 
                 // Click to change state of favorites
-                viewHolder.fav_image.setOnClickListener(v -> {
+                orderViewHolder.fav_image.setOnClickListener(v -> {
                     Favorites favorites = new Favorites();
                     favorites.setFoodId(adapter.getRef(position).getKey());
                     favorites.setFoodName(model.getName());
@@ -241,52 +241,65 @@ public class SearchActivity extends AppCompatActivity {
                     favorites.setFoodPrice(model.getPrice());
 
                     if (!localDB.isFavorites(adapter.getRef(position).getKey() , Common.currentUser.getPhone())){
-
                         localDB.addToFavorites(favorites);
-                        viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+                        orderViewHolder.fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
                         Toast.makeText(SearchActivity.this, "" + model.getName() + " was added to Favorites", Toast.LENGTH_SHORT).show();
                     }
                     else {
-
                         localDB.removeFromFavorites(adapter.getRef(position).getKey() , Common.currentUser.getPhone());
-                        viewHolder.fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                        orderViewHolder.fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                         Toast.makeText(SearchActivity.this, "" + model.getName() + " was removed from Favorites", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                viewHolder.setItemClickListener((view, position1, isLongClick) -> {
+                orderViewHolder.setItemClickListener((view, position1, isLongClick) -> {
                     // Start new Activity
                     Intent foodDetail = new Intent(SearchActivity.this, FoodDetailActivity.class);
                     foodDetail.putExtra("FoodId" , adapter.getRef(position1).getKey());   //Send Food Id to new Activity
                     startActivity(foodDetail);
                 });
             }
+
+            @NonNull
+            @Override
+            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.activity_food_list, parent, false);
+
+                return new FoodViewHolder(view);
+            }
         };
     }
 
     private void startSearch(CharSequence text) {
-        searchAdapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(
-                Food.class,
-                R.layout.food_item,
-                FoodViewHolder.class,
-                //Compare name , Very important: here we added Name to database's rules in (index on) in FireBase to check by name
-                foodList.orderByChild("name").equalTo(text.toString())
-        ) {
+        FirebaseRecyclerOptions<Food> options = new FirebaseRecyclerOptions.Builder<Food>().build();
+        new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
-            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
-
-                viewHolder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext())
+            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder,
+                                            int position,
+                                            @NonNull Food model) {
+                foodList.orderByChild("name").equalTo(text.toString());
+                foodViewHolder.food_name.setText(model.getName());
+                Picasso.get()
                         .load(model.getImage())
-                        .into(viewHolder.food_image);
+                        .into(foodViewHolder.food_image);
 
-                viewHolder.setItemClickListener((view, position1, isLongClick) -> {
+                foodViewHolder.setItemClickListener((view, position1, isLongClick) -> {
                     // Start new Activity
                     Intent foodDetail = new Intent(SearchActivity.this, FoodDetailActivity.class);
                     // Because now our adapter is searchAdapter , so we need get index on it
                     foodDetail.putExtra("FoodId" , searchAdapter.getRef(position1).getKey());
                     startActivity(foodDetail);
                 });
+            }
+
+            @NonNull
+            @Override
+            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.activity_food_list, parent, false);
+
+                return new FoodViewHolder(view);
             }
         };
 

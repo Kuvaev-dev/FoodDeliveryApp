@@ -20,6 +20,7 @@ import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Database.Database;
 import kuvaev.mainapp.eatit.Model.Food;
 import kuvaev.mainapp.eatit.Model.Order;
+import kuvaev.mainapp.eatit.R;
 
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     private final List<Order> listData;
@@ -36,15 +37,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(cart).inflate(R.layout.cart_layout, parent, false);
+        View view = LayoutInflater.from(cart).inflate(R.layout.layout_cart, parent, false);
         return new CartViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final CartViewHolder holder) {
+    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         holder.txt_cart_name.setText(listData.get(holder.getBindingAdapterPosition()).getProductName());
 
-        Picasso.with(cart.getBaseContext())
+        Picasso.get()
                 .load(listData.get(holder.getBindingAdapterPosition()).getImage())
                 .placeholder(android.R.color.holo_green_dark)
                 .resize(70 , 70)

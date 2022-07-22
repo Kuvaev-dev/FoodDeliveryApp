@@ -58,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements UpdateHelper.OnUp
 
         Typeface typeface = Typeface.createFromAsset(getAssets() , "fonts/NABILA.TTF");
 
-        btnSignUp = (Button)findViewById(R.id.btnSignUp);
-        btnSignIn = (Button)findViewById(R.id.btnSignIn);
-        textSlogan = (TextView)findViewById(R.id.txtSlogan);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        textSlogan = findViewById(R.id.txtSlogan);
         textSlogan.setTypeface(typeface);
 
         // init Paper

@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import kuvaev.mainapp.eatit.FoodDetailActivity;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Favorites;
 import kuvaev.mainapp.eatit.R;
 
@@ -37,11 +36,10 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesViewHolder
     @Override
     public void onBindViewHolder(@NonNull FavouritesViewHolder viewHolder, int position) {
         viewHolder.food_name.setText(favoritesList.get(position).getFoodName());
-        Picasso.with(context)
+        Picasso.get()
                 .load(favoritesList.get(position).getFoodImage())
                 .into(viewHolder.food_image);
 
-        final Favorites local = favoritesList.get(position);
         viewHolder.setItemClickListener((view, position1, isLongClick) -> {
             // Start new Activity
             Intent foodDetail = new Intent(context, FoodDetailActivity.class);

@@ -1,5 +1,6 @@
 package kuvaev.mainapp.eatit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,17 +9,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import kuvaev.mainapp.eatit.Common.Common;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Request;
 import kuvaev.mainapp.eatit.ViewHolder.OrderViewHolder;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -74,42 +75,45 @@ public class OrderStatusActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void loadOrders(String phone) {
-        adapter = new FirebaseRecyclerAdapter<Request, OrderViewHolder>(
-                Request.class,
-                R.layout.layout_order,
-                OrderViewHolder.class,
-                requests.orderByChild("phone").equalTo(phone)
-        ) {
-            @SuppressLint("NotifyDataSetChanged")
+        FirebaseRecyclerOptions<Request> options = new FirebaseRecyclerOptions.Builder<Request>().build();
+        new FirebaseRecyclerAdapter<Request, OrderViewHolder>(options) {
             @Override
-            private void populateViewHolder(OrderViewHolder viewHolder, Request model, final int position) {
-                viewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
-                viewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(model.getStatus()));
-                viewHolder.txtOrderAddress.setText(model.getAddress());
-                viewHolder.txtOrderPhone.setText(model.getPhone());
+            protected void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder,
+                                            int position,
+                                            @NonNull Request model) {
+                requests.orderByChild("phone").equalTo(phone);
+                orderViewHolder.txtOrderId.setText(adapter.getRef(position).getKey());
+                orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(model.getStatus()));
+                orderViewHolder.txtOrderAddress.setText(model.getAddress());
+                orderViewHolder.txtOrderPhone.setText(model.getPhone());
 
-                viewHolder.btn_delete.setOnClickListener(v -> {
-                    if (Common.isConnectionToInternet(getApplicationContext())){
-                        if (adapter.getItem(position).getStatus().equals("0")){
+                orderViewHolder.btn_delete.setOnClickListener(v -> {
+                    if (Common.isConnectionToInternet(getApplicationContext())) {
+                        if (adapter.getItem(position).getStatus().equals("0")) {
                             deleteOrder(adapter.getRef(position).getKey());
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
-                        }
-                        else
+                        } else
                             Toast.makeText(OrderStatusActivity.this, "You can't delete this order !", Toast.LENGTH_SHORT).show();
-                    }
-                    else
+                    } else
                         Toast.makeText(OrderStatusActivity.this, "Please check your connection !", Toast.LENGTH_SHORT).show();
                 });
 
-                viewHolder.setItemClickListener((view, position1, isLongClick) -> {
+                orderViewHolder.setItemClickListener((view, position1, isLongClick) -> {
                     Common.currentKey = adapter.getRef(position1).getKey();
                     startActivity(new Intent(OrderStatusActivity.this, TrackingOrderActivity.class));
                 });
             }
+
+            @NonNull
+            @Override
+            public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.activity_order_status, parent, false);
+
+                return new OrderViewHolder(view);
+            }
         };
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 
     private void deleteOrder(final String key) {

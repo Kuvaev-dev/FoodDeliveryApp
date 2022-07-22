@@ -1,6 +1,5 @@
 package kuvaev.mainapp.eatit;
 
-import android.accounts.Account;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +10,17 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.facebook.accountkit.Account;
+import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
+import com.facebook.accountkit.AccountKitError;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,6 +47,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.CheckBox;
@@ -105,16 +111,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // init Paper
         Paper.init(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
         // RecyclerView & Load menu
-        recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
+        recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setVisibility(View.VISIBLE);
 
         // Init Swipe Refresh Layout
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
@@ -159,7 +165,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             return;
         }
 
-        fab = (CounterFab) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setColorFilter(getResources().getColor(R.color.colorPrimary));
         fab.setOnClickListener(view -> {
             Intent cartIntent = new Intent(Home.this, CartActivity.class);
@@ -167,18 +173,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
         fab.setCount(new Database(this).getCountCart(Common.currentUser.getPhone()));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // Set name for user
         View headerView = navigationView.getHeaderView(0);
-        txtFullName = (TextView)headerView.findViewById(R.id.txtFullName);
+        txtFullName = headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
 
         // Send Token
@@ -190,7 +196,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void setupSlider() {
-        mSlider = (SliderLayout)findViewById(R.id.slider);
+        mSlider = findViewById(R.id.slider);
         image_list = new HashMap<>();
 
         final DatabaseReference banners = database.getReference("Banner");
@@ -270,27 +276,34 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(
-                Category.class ,
-                R.layout.menu_item ,
-                MenuViewHolder.class ,
-                category) {
+        FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>().build();
+        new FirebaseRecyclerAdapter<Category, MenuViewHolder>(options) {
             @Override
-            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
-
-                viewHolder.txtMenuName.setText(model.getName());
-                Picasso.with(getBaseContext())
+            protected void onBindViewHolder(@NonNull MenuViewHolder menuViewHolder,
+                                            int position,
+                                            @NonNull Category model) {
+                menuViewHolder.txtMenuName.setText(model.getName());
+                Picasso.get()
                         .load(model.getImage())
-                        .into(viewHolder.imageView);
+                        .into(menuViewHolder.imageView);
 
-                viewHolder.setItemClickListener((view, position1, isLongClick) -> {
+                menuViewHolder.setItemClickListener((view, position1, isLongClick) -> {
                     // Get CategoryId and send to new Activity
                     Intent foodList = new Intent(Home.this, FoodListActivity.class);
 
                     // Because CategoryId is key , so we just get key of this item
-                    foodList.putExtra("CategoryId" , adapter.getRef(position1).getKey());
+                    foodList.putExtra("CategoryId", adapter.getRef(position1).getKey());
                     startActivity(foodList);
                 });
+            }
+
+            @NonNull
+            @Override
+            public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.menu_item, parent, false);
+
+                return new MenuViewHolder(view);
             }
         };
     }
@@ -310,7 +323,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -417,7 +430,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(new Intent(Home.this, FavouritesActivity.class));
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -429,7 +442,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         View view = getLayoutInflater().inflate(R.layout.layout_home_address, null);
 
-        final MaterialEditText edtHomeAddress = (MaterialEditText)view.findViewById(R.id.edtHomeAddress);
+        final MaterialEditText edtHomeAddress = view.findViewById(R.id.edtHomeAddress);
         if (Common.currentUser.getHomeAddress() != null && !Common.currentUser.getHomeAddress().isEmpty())
             edtHomeAddress.setText(Common.currentUser.getHomeAddress());
 
@@ -460,7 +473,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 .setMessage("Please fill all information");
 
         View view = getLayoutInflater().inflate(R.layout.layout_setting, null);
-        final CheckBox ckb_subscribe_new = (CheckBox)view.findViewById(R.id.ckb_sub_news);
+        final CheckBox ckb_subscribe_new = view.findViewById(R.id.ckb_sub_news);
 
         //Add code remember state of checkbox
         Paper.init(Home.this);
@@ -493,12 +506,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 .setMessage("Please fill all information");
 
         View view = getLayoutInflater().inflate(R.layout.layout_change_name, null);
-        final MaterialEditText edtName = (MaterialEditText)view.findViewById(R.id.edtName);
+        final MaterialEditText edtName = view.findViewById(R.id.edtName);
         alertDialog.setView(view);
 
         alertDialog.setPositiveButton("UPDATE", (dialog, which) -> {
             // use android.app.AlertDialog for SpotsDialog , not from v7 in AlertDialog
-            final android.app.AlertDialog waitingDialog = new SpotsDialog(Home.this);
+            final android.app.AlertDialog waitingDialog = new SpotsDialog.Builder().setContext(Home.this).build();
             waitingDialog.show();
             waitingDialog.setMessage("Please waiting...");
 
@@ -534,15 +547,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 .setMessage("Please fill all information");
 
         View view = getLayoutInflater().inflate(R.layout.layout_change_password, null);
-        final MaterialEditText edtPassword = (MaterialEditText)view.findViewById(R.id.edtPassword);
-        final MaterialEditText edtNewPassword = (MaterialEditText)view.findViewById(R.id.edtNewPassword);
-        final MaterialEditText edtRepeatPassword = (MaterialEditText)view.findViewById(R.id.edtRepeatPassword);
+        final MaterialEditText edtPassword = view.findViewById(R.id.edtPassword);
+        final MaterialEditText edtNewPassword = view.findViewById(R.id.edtNewPassword);
+        final MaterialEditText edtRepeatPassword = view.findViewById(R.id.edtRepeatPassword);
         alertDialog.setView(view);
 
         alertDialog.setPositiveButton("CHANGE", (dialog, which) -> {
             //Change password here
             //use android.app.AlertDialog for SpotsDialog , not from v7 in AlertDialog
-            final android.app.AlertDialog waitingDialog = new SpotsDialog(Home.this);
+            final android.app.AlertDialog waitingDialog = new SpotsDialog.Builder().setContext(Home.this).build();
             waitingDialog.show();
             waitingDialog.setMessage("Please waiting...");
 
