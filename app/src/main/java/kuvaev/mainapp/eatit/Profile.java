@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +36,6 @@ public class Profile extends AppCompatActivity {
     public TextView profile_name,  profile_phone, profile_address;
     FButton btnUpdateUsername, btnUpdateHomeAddress,  btnSelect, btnUpload;
     CircularImageView profile_pic;
-    RelativeLayout rootLayout;
     Uri saveUri;
     FirebaseStorage storage;
     StorageReference storageReference;

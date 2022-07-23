@@ -106,7 +106,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
     private static final int PLAY_SERVICES_REQUEST = 9997;
 
     // Declare Google Map API Retrofit
-    IGoogleService mGoogleMapService;
+    GoogleServiceAction mGoogleMapService;
     APIService mService;
 
     // declare root layout

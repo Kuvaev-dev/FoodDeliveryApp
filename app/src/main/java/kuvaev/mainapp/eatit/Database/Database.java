@@ -22,9 +22,9 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public boolean checkFoodExists(String foodId, String userPhone){
-        boolean flag = false;
+        boolean flag;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = null;
+        Cursor cursor;
         String SQLQuery = String.format("SELECT * From OrderDetail WHERE UserPhone='%s' AND ProductId='%s'", userPhone,foodId);
         cursor = db.rawQuery(SQLQuery, null);
         flag= cursor.getCount() > 0;
@@ -88,6 +88,7 @@ public class Database extends SQLiteAssetHelper {
                 count = cursor.getInt(0);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return count;
     }
 

@@ -18,14 +18,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class DirectionJSONParser {
-    List<List<HashMap<String, String>>> message;
-    public static SimpleDateFormat DBFormat = new SimpleDateFormat("hh:mm a"	, Locale.getDefault());
-
     /**
      * Receives a JSONObject and returns a list of lists containing latitude and longitude
      */
     public List<List<HashMap<String, String>>> parse(JSONObject jObject) {
-        List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String, String>>>();
+        List<List<HashMap<String, String>>> routes = new ArrayList<>();
         JSONArray jRoutes;
         JSONArray jLegs;
         JSONArray jSteps;
@@ -56,13 +53,13 @@ public class DirectionJSONParser {
 
                     /* Traversing all steps */
                     for (int k = 0; k < jSteps.length(); k++) {
-                        String polyline = "";
+                        String polyline;
                         polyline = (String) ((JSONObject) ((JSONObject) jSteps.get(k)).get("polyline")).get("points");
                         List list = decodePoly(polyline);
 
                         /* Traversing all points */
                         for (int l = 0; l < list.size(); l++) {
-                            HashMap<String, String> hm = new HashMap<String, String>();
+                            HashMap<String, String> hm = new HashMap<>();
                             hm.put("lat", Double.toString(((LatLng) list.get(l)).latitude));
                             hm.put("lng", Double.toString(((LatLng) list.get(l)).longitude));
                             path.add(hm);
@@ -76,8 +73,8 @@ public class DirectionJSONParser {
                     int minutes = (totalSeconds - days * 86400 - hours * 3600) / 60;
                     int seconds = totalSeconds - days * 86400 - hours * 3600 - minutes * 60;
 
-                    Common.DISTANCE = String.valueOf(dist + " km ");
-                    Common.DURATION = String.valueOf(hours + " hours " + minutes + " mins " + seconds + " seconds ");
+                    Common.DISTANCE = dist + " km ";
+                    Common.DURATION = hours + " hours " + minutes + " mins " + seconds + " seconds ";
 
                     SimpleDateFormat DBFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
                     String currentDateandTime = DBFormat.format(new Date());
@@ -95,8 +92,7 @@ public class DirectionJSONParser {
                     calendar.add(Calendar.MINUTE, minutes);
                     calendar.add(Calendar.SECOND, seconds);
                     Log.v("1st",""+calendar.getTime());
-                    Common.ESTIMATED_TIME = String.valueOf(DBFormat.format(calendar.getTime()));
-
+                    Common.ESTIMATED_TIME = DBFormat.format(calendar.getTime());
                 }
             }
         } catch (JSONException e) {

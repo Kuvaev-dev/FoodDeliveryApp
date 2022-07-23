@@ -40,7 +40,6 @@ import java.util.Objects;
 
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Database.Database;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Favorites;
 import kuvaev.mainapp.eatit.Model.Food;
 import kuvaev.mainapp.eatit.Model.Order;
@@ -143,7 +142,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // when user type their text, we will change suggest list
-                List<String> suggest = new ArrayList<String>();
+                List<String> suggest = new ArrayList<>();
                 for (String search:suggestList){ // loop in suggest list
                     if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase()))
                         suggest.add(search);

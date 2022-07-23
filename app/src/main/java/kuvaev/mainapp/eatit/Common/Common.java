@@ -9,7 +9,7 @@ import java.util.Locale;
 import kuvaev.mainapp.eatit.Model.User;
 import kuvaev.mainapp.eatit.Remote.APIService;
 import kuvaev.mainapp.eatit.Remote.GoogleRetrofitClient;
-import kuvaev.mainapp.eatit.Remote.IGoogleService;
+import kuvaev.mainapp.eatit.Remote.GoogleServiceAction;
 import kuvaev.mainapp.eatit.Remote.RetrofitClient;
 
 public class Common {
@@ -35,8 +35,8 @@ public class Common {
         return RetrofitClient.getClient(BASE_URL).create(APIService.class);
     }
 
-    public static IGoogleService getGoogleMapAPI(){
-        return GoogleRetrofitClient.getGoogleClient(GOOGLE_API_URL).create(IGoogleService.class);
+    public static GoogleServiceAction getGoogleMapAPI(){
+        return GoogleRetrofitClient.getGoogleClient(GOOGLE_API_URL).create(GoogleServiceAction.class);
     }
 
     public static final String DELETE = "Delete";

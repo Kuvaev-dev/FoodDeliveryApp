@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Interface.ItemClickListener;
+import kuvaev.mainapp.eatit.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
     public TextView txt_cart_name,txt_price;

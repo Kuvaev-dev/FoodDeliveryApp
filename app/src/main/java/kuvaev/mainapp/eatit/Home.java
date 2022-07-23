@@ -63,7 +63,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     DatabaseReference category;
     public TextView txtFullName;
     RecyclerView recycler_menu;
-    RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
 
     SwipeRefreshLayout swipeRefreshLayout;

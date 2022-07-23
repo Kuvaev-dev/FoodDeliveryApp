@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -105,29 +104,24 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
         time = (TextView)findViewById(R.id.display_expected_hour);
         btn_call = (FButton) findViewById(R.id.btnCall);
 
-      btn_call.setOnClickListener(new View.OnClickListener() {
+      btn_call.setOnClickListener(v -> shippingOrder.child(Common.currentKey).addListenerForSingleValueEvent(new ValueEventListener() {
           @Override
-          public void onClick(View v) {
-              shippingOrder.child(Common.currentKey).addListenerForSingleValueEvent(new ValueEventListener() {
-                  @Override
-                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                      ShippingInformation shippingInformation = dataSnapshot.getValue(ShippingInformation.class);
-                      Intent intent = new Intent(Intent.ACTION_DIAL);
-                      assert shippingInformation != null;
-                      intent.setData(Uri.parse("tel:" + shippingInformation.getShipperPhone()));
-                      if (ActivityCompat.checkSelfPermission(TrackingOrder.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                          ActivityCompat.requestPermissions(TrackingOrder.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
-                      }
-                      startActivity(intent);
-                  }
-
-                  @Override
-                  public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                  }
-              });
+          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              ShippingInformation shippingInformation = dataSnapshot.getValue(ShippingInformation.class);
+              Intent intent = new Intent(Intent.ACTION_DIAL);
+              assert shippingInformation != null;
+              intent.setData(Uri.parse("tel:" + shippingInformation.getShipperPhone()));
+              if (ActivityCompat.checkSelfPermission(TrackingOrder.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                  ActivityCompat.requestPermissions(TrackingOrder.this, new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
+              }
+              startActivity(intent);
           }
-      });
+
+          @Override
+          public void onCancelled(@NonNull DatabaseError databaseError) {
+
+          }
+      }));
     }
 
     @Override

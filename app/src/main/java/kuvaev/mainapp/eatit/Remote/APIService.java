@@ -9,11 +9,10 @@ import retrofit2.http.POST;
 
 public interface APIService {
     @Headers(
-            {
-                    "Content-Type:application/json",
-                    "Authorization:key=yourKey"
-            }
-
+        {
+            "Content-Type:application/json",
+            "Authorization:key=yourKey"
+        }
     )
     @POST("fcm/send")
     Call<MyResponse> sendNotification(@Body Sender body);
