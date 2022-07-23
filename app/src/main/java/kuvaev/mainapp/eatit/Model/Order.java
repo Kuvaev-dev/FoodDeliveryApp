@@ -6,19 +6,17 @@ public class Order {
     private String ProductName;
     private String Quantity;
     private String Price;
-    private String Discount;
     private String Image;
 
     public Order() { }
 
-    public Order(String userPhone, String productId, String productName, String quantity, String price, String discount , String image) {
+    public Order(String userPhone, String productId, String productName, String quantity, String price, String image) {
         UserPhone = userPhone;
         ProductId = productId;
         ProductName = productName;
         Quantity = quantity;
         Price = price;
-        Discount = discount;
-        this.Image = image;
+        Image = image;
     }
 
     public String getUserPhone() {
@@ -59,14 +57,6 @@ public class Order {
 
     public void setPrice(String price) {
         Price = price;
-    }
-
-    public String getDiscount() {
-        return Discount;
-    }
-
-    public void setDiscount(String discount) {
-        Discount = discount;
     }
 
     public String getImage() {

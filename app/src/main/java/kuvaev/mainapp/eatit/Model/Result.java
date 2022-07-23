@@ -1,5 +1,5 @@
 package kuvaev.mainapp.eatit.Model;
 
-public class Result {
+class Result {
     public String message_id;
 }

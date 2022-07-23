@@ -1,41 +1,22 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class User {
-    private String Name;
-    private String Password;
-    private String Phone;
-    private String IsStaff;
+    private String name;
+    private String password;
+    private String phone;
+    private String isstaff;
     private String secureCode;
     private String homeAddress;
-    private Object balance;
+    private String images;
 
-    public User() {
-    }
+    public User() { }
 
-    public User(String name, String password , String secureCode) {
-        Name = name;
-        Password = password;
-        IsStaff = "false";
-        balance = "0.0";
-        homeAddress = "";
-        this.secureCode = secureCode;
-
-    }
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    public Object getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Object balance) {
-        this.balance = balance;
+    public User(String Pname, String Ppassword, String PsecureCode,String image ){
+        name = Pname;
+        password = Ppassword;
+        isstaff = "false";
+        secureCode = PsecureCode;
+        images = image;
     }
 
     public String getSecureCode() {
@@ -46,35 +27,48 @@ public class User {
         this.secureCode = secureCode;
     }
 
-    public String getIsStaff() {
-        return IsStaff;
+    public String getIsstaff() {
+        return isstaff;
     }
 
-    public void setIsStaff(String isStaff) {
-        IsStaff = isStaff;
+    public void setIsstaff(String isstaff) {
+        this.isstaff = isstaff;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
-    public void setPhone(String phone) {
-        Phone = phone;
+    public void setPhone(String Pphone) {
+        phone = Pphone;
     }
 
-    public String getName() {
-        return Name;
+    public String getName(){
+        return name;
     }
 
-    public void setName(String name) {
-        this.Name = name;
+    public String getImage() {
+        return images;
     }
 
-    public String getPassword() {
-        return Password;
+    public void setImage(String image) {
+        images = image;
     }
 
-    public void setPassword(String password) {
-        this.Password = password;
+    public String setname(String Pname){
+        name= Pname;
+        return name;
+    }
+
+    public String getpassword(){
+        return password;
+    }
+
+    public String getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        this.homeAddress = homeAddress;
     }
 }

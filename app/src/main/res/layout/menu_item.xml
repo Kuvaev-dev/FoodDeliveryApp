@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    app:cardElevation="4dp">
-
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="0dp">
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,20 +14,20 @@
         <ImageView
             android:id="@+id/menu_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_bg"
+            android:src="@drawable/background_white"
             android:contentDescription="@null"/>
 
         <TextView
             android:id="@+id/menu_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#4f0e0d0e"
-            android:gravity="center"
-            android:text="@string/menu_item_name"
+            android:text="@string/mi_name_of_menu"
+            android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="20sp"/>
+            android:background="#4f0e0d0e"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

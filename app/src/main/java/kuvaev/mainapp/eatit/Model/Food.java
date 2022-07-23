@@ -1,25 +1,17 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class Food {
-    private String Name , Image , Description , Price , Discount , MenuId , fooId;
+
+    private String Name,Image,Description,Price,MenuId;
 
     public Food() { }
 
-    public Food(String name, String image, String description, String price, String discount, String menuId) {
-        Name = name;
-        Image = image;
-        Description = description;
-        Price = price;
-        Discount = discount;
-        MenuId = menuId;
-    }
-
-    public String getFooId() {
-        return fooId;
-    }
-
-    public void setFooId(String fooId) {
-        this.fooId = fooId;
+    public Food(String name, String image, String description, String price, String menuId ){
+        Name=name;
+        Image=image;
+        Description=description;
+        Price=price;
+        MenuId=menuId;
     }
 
     public String getName() {
@@ -52,14 +44,6 @@ public class Food {
 
     public void setPrice(String price) {
         Price = price;
-    }
-
-    public String getDiscount() {
-        return Discount;
-    }
-
-    public void setDiscount(String discount) {
-        Discount = discount;
     }
 
     public String getMenuId() {

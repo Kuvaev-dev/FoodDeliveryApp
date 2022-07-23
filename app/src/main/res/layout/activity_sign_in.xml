@@ -4,115 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity"
-    android:background="@drawable/my_bg">
+    android:background="@drawable/iphonewallpaper"
+    tools:context=".SignIn">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPhone"
+            android:hint="@string/asi_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
-            android:hint="@string/signin_string_phone_number"
-            android:text="@string/signin_string_phone"
+            android:text="@string/asi_phone_number_val"
             android:textColor="@android:color/white"
             android:textSize="34sp"
             android:inputType="phone"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_maxCharacters="12"
             app:met_primaryColor="@android:color/white"
-            app:met_singleLineEllipsis="true"
-            />
+            app:met_singleLineEllipsis="true"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPassword"
+            android:hint="@string/asi_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@android:color/white"
-            android:hint="@string/signin_string_password"
-            android:text="@string/signin_password"
+            android:text="@string/asi_password_val"
+            android:fontFamily="sans-serif"
             android:textColor="@android:color/white"
             android:textSize="34sp"
             android:inputType="textPassword"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_maxCharacters="12"
             app:met_primaryColor="@android:color/white"
-            app:met_singleLineEllipsis="true"
-            />
+            app:passwordToggleEnabled="true"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:weightSum="2">
 
-            <com.rey.material.widget.CheckBox
-                android:id="@+id/ckbRemember"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                style="@style/Material.Drawable.CheckBox"
-                android:text="@string/signin_string_remember_me"
-                android:textColor="@android:color/white"
-                android:gravity="center_vertical"
-                app:cbd_strokeColor="@android:color/white"
-                app:cbd_tickColor="@color/colorPrimaryDark"/>
+           <com.rey.material.widget.CheckBox
+               android:id="@+id/ckbRemember"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="wrap_content"
+               android:text="@string/asi_remember_me"
+               android:textColor="@android:color/white"
+               app:cbd_strokeColor="@android:color/white"
+               app:cbd_tickColor="@android:color/black"
+               style="@style/Material.Drawable.CheckBox"
+               android:gravity="center_vertical"/>
 
-            <TextView
-                android:id="@+id/txtForgotPwd"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/forgot_pwd"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/SignInFaceBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="25sp"
-                android:layout_height="25sp"
-                android:src="@drawable/ic_facebook"
-                android:scaleType="centerCrop"/>
-
-            <TextView
-                android:id="@+id/txtFaceBookSignIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/signin_btn_string_sign_in"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"/>
-        </LinearLayout>
+           <TextView
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:textColor="@android:color/white"
+               android:id="@+id/txtForgotPwd"
+               android:text="@string/forgot_pwd"/>
+       </LinearLayout>
     </LinearLayout>
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btnSignIn"
-        android:text="@string/signin_btn_sign_in"
-        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_alignParentBottom="true"
-        app:fButtonColor="@color/btnSignActive"
+        android:text="@string/asi_sign_in"
+        android:textColor="@android:color/white"
+        app:fButtonColor="@color/btnSignUp"
+        app:cornerRadius="4dp"
         app:shadowColor="@android:color/black"
         app:shadowEnabled="true"
-        app:shadowHeight="5dp"
-        app:cornerRadius="4dp"/>
+        app:shadowHeight="5dp"/>
 </RelativeLayout>

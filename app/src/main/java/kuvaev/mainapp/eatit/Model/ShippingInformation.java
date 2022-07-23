@@ -1,12 +1,12 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class ShippingInformation {
-    private String orderId, shipperPhone;
-    private double lat, lng;
+    private String orderId,shipperPhone;
+    private Double lat,lng;
 
     public ShippingInformation() { }
 
-    public ShippingInformation(String orderId, String shipperPhone, double lat, double lng) {
+    public ShippingInformation(String orderId, String shipperPhone, Double lat, Double lng) {
         this.orderId = orderId;
         this.shipperPhone = shipperPhone;
         this.lat = lat;
@@ -29,19 +29,20 @@ public class ShippingInformation {
         this.shipperPhone = shipperPhone;
     }
 
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public double getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 }
+

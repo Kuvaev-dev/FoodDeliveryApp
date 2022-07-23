@@ -1,7 +1,7 @@
 package kuvaev.mainapp.eatit.Remote;
 
-import kuvaev.mainapp.eatit.Model.DataMessage;
-import kuvaev.mainapp.eatit.Model.Response;
+import kuvaev.mainapp.eatit.Model.MyResponse;
+import kuvaev.mainapp.eatit.Model.Sender;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
@@ -11,10 +11,10 @@ public interface APIService {
     @Headers(
             {
                     "Content-Type:application/json",
-                    "Authorization:key=.........................................................."
+                    "Authorization:key=yourKey"
             }
-    )
 
+    )
     @POST("fcm/send")
-    Call<Response> sendNotification(@Body DataMessage body);
+    Call<MyResponse> sendNotification(@Body Sender body);
 }

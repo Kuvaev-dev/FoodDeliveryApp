@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="200dp"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    app:cardElevation="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="0dp"
     android:layout_marginBottom="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="5">
 
         <ImageView
             android:id="@+id/food_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/my_bg"
+            android:src="@drawable/background_white"
             android:contentDescription="@null"/>
 
-        <TextView
-            android:id="@+id/food_name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#4f0e0d0e"
-            android:gravity="center"
-            android:text="@string/food_item_name_of_food"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/food_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textColor="@color/fbutton_color_green_sea"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/btnShare"
+                android:src="@drawable/ic_share_black_24dp"
+                app:tint="@color/fbutton_color_green_sea"
+                android:contentDescription="@null"/>
+            
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/fav"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                app:tint="@color/fbutton_color_green_sea"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <TextView
+             android:id="@+id/food_price"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dp"
+             android:text=""
+             android:textColor="@color/fbutton_color_green_sea"
+             android:textSize="20sp" />
+
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/btn_quick_cart"
+             android:src="@drawable/ic_shopping_cart_black_24dp"
+             app:tint="@color/fbutton_color_green_sea"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="30dp"
+             android:layout_centerVertical="true"
+             android:contentDescription="@null"/>
+     </RelativeLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

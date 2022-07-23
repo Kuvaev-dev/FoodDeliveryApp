@@ -1,7 +1,8 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class Banner {
-    private String id , name , image;
+
+    private String id, name, image;
 
     public Banner() { }
 

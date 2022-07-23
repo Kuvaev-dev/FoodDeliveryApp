@@ -4,15 +4,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class GoogleRetrofitClient {
-    private static Retrofit retrofitGoogleClient = null;
+    private static Retrofit retrofit = null;
 
-    public static Retrofit getGoogleClient(String baseURL) {
-        if (retrofitGoogleClient == null)
-            retrofitGoogleClient = new Retrofit.Builder()
+    public static Retrofit getGoogleClient(String baseURL){
+        if (retrofit == null){
+            retrofit = new Retrofit.Builder()
                     .baseUrl(baseURL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
-
-        return retrofitGoogleClient;
+        }
+        return retrofit;
     }
 }

@@ -1,17 +1,17 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class Favorites {
-    private String FoodId , FoodName , FoodPrice , FoodMenuId , FoodImage , FoodDiscount , FoodDescription , UserPhone;
+
+    private String FoodId, FoodName, FoodPrice, FoodMenuId, FoodImage, FoodDescription, UserPhone;
 
     public Favorites() { }
 
-    public Favorites(String foodId, String foodName, String foodPrice, String foodMenuId, String foodImage, String foodDiscount, String foodDescription, String userPhone) {
+    public Favorites(String foodId, String foodName, String foodPrice, String foodMenuId, String foodImage, String foodDescription, String userPhone) {
         FoodId = foodId;
         FoodName = foodName;
         FoodPrice = foodPrice;
         FoodMenuId = foodMenuId;
         FoodImage = foodImage;
-        FoodDiscount = foodDiscount;
         FoodDescription = foodDescription;
         UserPhone = userPhone;
     }
@@ -54,14 +54,6 @@ public class Favorites {
 
     public void setFoodImage(String foodImage) {
         FoodImage = foodImage;
-    }
-
-    public String getFoodDiscount() {
-        return FoodDiscount;
-    }
-
-    public void setFoodDiscount(String foodDiscount) {
-        FoodDiscount = foodDiscount;
     }
 
     public String getFoodDescription() {

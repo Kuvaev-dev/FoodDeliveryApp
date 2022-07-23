@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">EatIt</string>
-    <string name="slogan">Without thorns to Taste!</string>
+    <string name="app_name">iDelivery</string>
+    <string name="slogan">Delivery service that made our life become more simple and comfortable
+    </string>
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,58 +9,101 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="forgot_pwd"><u>Forgot Password?</u></string>
+    <string name="facebook_app_id">278065246105234</string>
+    <string name="facebook_login_protocol_name">fb278065246105234</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">4e9cdd3703508a0166c0d54d44c24e7b</string>
+    <string name="title_activity_scrolling">About Borenos</string>
+    <string name="large_text">
+      "Not everyone live their dream. Even more, not everyone build dreams. The founders of Borenos Fried Chicken chose to build not just theirs, but the people of Sabah’s too. Brought up abroad, they have seen possibilities, potentials and understood what needed to be done in bringing their beloved hometown to the eyes of the world. Their inspiration is the people, their purpose is the growth of Sabah, their drive is Borneo pride.\n\n"
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="cart_string_total">Total:</string>
-    <string name="cart_string_total_value">$10,000</string>
-    <string name="cart_string_place_order">Place Order</string>
-    <string name="forgot_pwd">Forgot Password</string>
-    <string name="signin_string_phone_number">Phone Number</string>
-    <string name="signin_string_phone">0988123344</string>
-    <string name="signin_string_password">Password</string>
-    <string name="signin_password">1234</string>
-    <string name="signin_string_remember_me">Remember me</string>
-    <string name="signin_btn_string_sign_in">Sign in</string>
-    <string name="signin_btn_sign_in">Sign In</string>
-    <string name="signup_string_phone_number">Phone Number</string>
-    <string name="signup_phone_number">0988123388</string>
-    <string name="signup_string_name">Name</string>
-    <string name="signup_name">Tom cruise</string>
-    <string name="signup_string_password">Password</string>
-    <string name="signup_password">1234</string>
-    <string name="signup_string_secure_code">Secure Code</string>
-    <string name="signup_secure_code">abc123</string>
-    <string name="signup_string_sign_up">Sign up</string>
-    <string name="sinup_btn_string_sign_up">Sign Up</string>
-    <string name="favourites_item_del_text">Delete</string>
-    <string name="favourites_item_name_of_food">Name of food</string>
-    <string name="food_item_name_of_food">Name of Food</string>
-    <string name="cart_item_price">100,000</string>
-    <string name="cart_item_name">Food 01</string>
-    <string name="cart_delete_text">Delete</string>
-    <string name="edit_name_text">Name</string>
-    <string name="change_password_pass_text">Password</string>
-    <string name="change_password_new_pass_text">New Password</string>
-    <string name="change_password_repeat_password_text">Repeat Password</string>
-    <string name="fp_phone_number_text">Phone Number</string>
-    <string name="fp_phone_number">0988123388</string>
-    <string name="fp_secure_code_text">Secure Code</string>
-    <string name="fp_secure_code">abc123</string>
-    <string name="home_address_text">Home Address</string>
-    <string name="oac_comment_text">Comment</string>
-    <string name="oac_delivery_method_text">Delivery method :</string>
-    <string name="oac_ship_to_this_address_text">Ship To This Address</string>
-    <string name="oac_home_address">Home Address</string>
-    <string name="oac_payment_method">Payment method :</string>
-    <string name="oac_cash_on_delivery_text">Cash On Delivery</string>
-    <string name="oac_paypal_text">Paypal</string>
-    <string name="oac_eatit_s_balance_text">EatIt\'s Balance</string>
-    <string name="setting_name">Subscribe News</string>
-    <string name="shc_user_phone_text">User Phone</string>
-    <string name="shc_comment_text">Comment</string>
-    <string name="menu_item_name">Name of Menu</string>
-    <string name="nhh_name_text">John</string>
+        "Why then, fried chicken? Simple, delicious and enjoyable to be shared over small talks or family gathering. Just like home, bringing back the good old memories of ‘comfort food’. Dining at home has another perk; it’s nutritious. And so the idea of freshness and quality surfaced. Only good ingredients are to be used, only the quality ones. This is after all, for my home people.\n\n"
 
+        "Part of the secret to Borenos’ signature tender juiciness comes from step-to-step perfection, with just the right amount of marination, breading skills and controlling the oil temperature to lock in flavors to achieve that golden coat of crispy skin, and tender meat.\n\n"
+        "We know hard work is important, but what matters more is believing in ourselves.\n\n"
+
+        "Borenos Fried Chicken is Sabah owned, for Sabahans, the next Borneo Pride.\n\n"
+
+        "This application act as the user-side of Borenos Fried Chicken. This application allows the user to view food menu, comment food menu and share food menu to Facebook.This app also allows user to order Borenos's food product through mobile application and deliver the product to user's place.\n\n"
+
+        "Developed by: Liew Syet Chau\n"
+        "Matrics no: BI15110121\n"
+        "Course: Bachelor of Networking Engineering,HC05\n\n"
+
+        "Supervisor: Dr Mohd Hanafi Ahmad Hijazi\n"
+        "Examiner: Miss Nordaliela Binti Mohd Rusli\n"
+    </string>
+    <string name="title_activity_tracking_order">Map</string>
+    <string name="ac_place_order">Place Order</string>
+    <string name="ac_total">Total:</string>
+    <string name="ac_total_val">RM 50.00</string>
+    <string name="acu_contact_us">Contact Us</string>
+    <string name="acu_call">Call</string>
+    <string name="acu_mail">Mail</string>
+    <string name="acu_facebook">Facebook</string>
+    <string name="afd_food_name">Food Name</string>
+    <string name="afdt_food_name">Food Name</string>
+    <string name="afd_vallet">RM</string>
+    <string name="afd_val">1000</string>
+    <string name="afd_description">Description</string>
+    <string name="afd_show_comment">Show Comment</string>
+    <string name="am_user">User</string>
+    <string name="am_sign_in">Sign In</string>
+    <string name="ap_username">Username</string>
+    <string name="ap_phone_number">Phone Number</string>
+    <string name="ap_home_address">Home Address</string>
+    <string name="ap_update_username">Update Username</string>
+    <string name="ap_update_home_address">Update Home Address</string>
+    <string name="asi_phone_number">Phone Number</string>
+    <string name="asi_phone_number_val">0128688032</string>
+    <string name="asi_password">Password</string>
+    <string name="asi_password_val">chau95</string>
+    <string name="asi_remember_me">Remember me</string>
+    <string name="asi_sign_in">Sign In</string>
+    <string name="asu_phone_number">Phone Number</string>
+    <string name="asu_phone_number_val">0128688032</string>
+    <string name="asu_name">Name</string>
+    <string name="asu_name_val">Lsc</string>
+    <string name="asu_password">Password</string>
+    <string name="asu_password_val">chau95</string>
+    <string name="asu_secure_code">Secure Code</string>
+    <string name="asu_secure_code_val">lsc1995</string>
+    <string name="asu_sign_up">Sign Up</string>
+    <string name="ato_distance">DISTANCE:</string>
+    <string name="ato_duration">DURATION:</string>
+    <string name="ato_time_reach">TIME REACH:</string>
+    <string name="ato_call">CALL</string>
+    <string name="aua_update_address">Update Address</string>
+    <string name="aua_home_address">Home Address</string>
+    <string name="aua_confirm">Confirm</string>
+    <string name="auu_update_username">Update Username</string>
+    <string name="auu_username">Username</string>
+    <string name="auu_confirm">Confirm</string>
+    <string name="cl_delete">DELETE</string>
+    <string name="cl_food_name">Food 01</string>
+    <string name="cl_food_cost">RM 9.90</string>
+    <string name="cpd_select">SELECT</string>
+    <string name="cpd_upload">UPLOAD</string>
+    <string name="fi_delete">DELETE</string>
+    <string name="fplphone_number">Phone Number</string>
+    <string name="fplsecure_code">Secure Code</string>
+    <string name="hal_home_address">Home Address</string>
+    <string name="mi_name_of_menu">Name of Menu</string>
+    <string name="oac_cash_on_delivery">Cash On Delivery</string>
+    <string name="oac__payment_method">Payment Method :</string>
+    <string name="oaco_home_address">Home Address</string>
+    <string name="oaco_ship_to_this_address">Ship To This Address</string>
+    <string name="oaco_delivery_method">Delivery Method :</string>
+    <string name="oaco_comment">Comment</string>
+    <string name="ol_order_id">Order Id</string>
+    <string name="ol_order_date">Order Date</string>
+    <string name="ol_order_name">Order Name</string>
+    <string name="ol_status">Status</string>
+    <string name="ol_phone_val">0128688032</string>
+    <string name="ol_address">Address</string>
+    <string name="ol_price">Price</string>
+    <string name="sl_subscribe_to_idelivery">Subscribe to iDelivery</string>
+    <string name="scl_food_name">Food 01</string>
+    <string name="scl_food_cost">RM 9.90</string>
+    <string name="uul_username">Username</string>
 </resources>

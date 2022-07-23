@@ -1,18 +1,21 @@
 package kuvaev.mainapp.eatit.Model;
 
 public class Rating {
+    // key & value
     private String userPhone;
     private String foodId;
     private String rateValue;
     private String comment;
+    private String image;
 
     public Rating() { }
 
-    public Rating(String userPhone, String foodId, String rateValue, String comment) {
+    public Rating(String userPhone, String foodId, String rateValue, String comment, String image) {
         this.userPhone = userPhone;
         this.foodId = foodId;
         this.rateValue = rateValue;
         this.comment = comment;
+        this.image = image;
     }
 
     public String getUserPhone() {
@@ -45,5 +48,13 @@ public class Rating {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

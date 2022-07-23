@@ -12,24 +12,24 @@ import kuvaev.mainapp.eatit.R;
 public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView txtMenuName;
     public ImageView imageView;
-
     private ItemClickListener itemClickListener;
 
-    public MenuViewHolder(View itemView) {
+    public MenuViewHolder(View itemView){
         super(itemView);
 
-        txtMenuName = itemView.findViewById(R.id.menu_name);
-        imageView = itemView.findViewById(R.id.menu_image);
+        txtMenuName = (TextView)itemView.findViewById(R.id.menu_name);
+        imageView = (ImageView)itemView.findViewById(R.id.menu_image);
 
         itemView.setOnClickListener(this);
     }
 
-    public void setItemClickListener(ItemClickListener itemClickListener) {
+    public void setItemClickListener(ItemClickListener itemClickListener){
         this.itemClickListener = itemClickListener;
     }
 
     @Override
-    public void onClick(View v) {
-        itemClickListener.onClick(v , getBindingAdapterPosition() , false);
+    public void onClick(View view){
+        itemClickListener.onClick(view, getBindingAdapterPosition(),false);
     }
+
 }

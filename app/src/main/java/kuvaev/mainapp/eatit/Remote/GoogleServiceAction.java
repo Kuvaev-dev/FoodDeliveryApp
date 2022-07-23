@@ -7,11 +7,11 @@ import retrofit2.http.Url;
 
 public interface GoogleServiceAction {
     @GET
-    Call<String> getAddressName(@Url String url , @Query("key") String key);
+    Call<String> getAddressName(@Url String url);
 
     @GET
-    Call<String> getLocationFromAddress(@Url String url , @Query("key") String key);
+    Call<String> getLocationFromAddress(@Url String url);
 
-    @GET("maps/api/directions/json")
-    Call<String> getDirection(@Query("origin") String origin , @Query("destination") String destination , @Query("key") String key);
+    @GET("maps/api/directions/json?key=yourKey&sensor=true&language=en&mode=driving")
+    Call<String> getDirections(@Query("origin") String origin, @Query("destination") String destination);
 }
