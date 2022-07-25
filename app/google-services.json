@@ -1,78 +1,33 @@
 {
   "project_info": {
-    "project_number": "551027991310",
-    "project_id": "eat-it-ca485",
-    "storage_bucket": "eat-it-ca485.appspot.com"
+    "project_number": "783270230740",
+    "project_id": "fooddeliveryapp-2d4b7",
+    "storage_bucket": "fooddeliveryapp-2d4b7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:551027991310:android:899536c09be83649a26d5f",
+        "mobilesdk_app_id": "1:783270230740:android:4c04d4f86e504afa62d941",
         "android_client_info": {
           "package_name": "kuvaev.mainapp.eatit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "551027991310-lvfeoncu1l3gndpboebq8vhu83681qea.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kuvaev.mainapp.eatit",
-            "certificate_hash": "2cd17b1b67cd5d8f34b33ce99c539e4242a75918"
-          }
-        },
-        {
-          "client_id": "551027991310-p1apep4q7q5hags6bmijf6crdmb8k2di.apps.googleusercontent.com",
+          "client_id": "783270230740-r9goudc1h2ls9nsuomn5bnhad8enevm6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAEyu5ZGgoNvmIo7N4hMak8j2v0YLqGdmA"
+          "current_key": "AIzaSyCtL1ayj74hceZpZh83UZseeW7S5RHBBz0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "551027991310-p1apep4q7q5hags6bmijf6crdmb8k2di.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:551027991310:android:4f8bbdb51a417ebca26d5f",
-        "android_client_info": {
-          "package_name": "kuvaev.mainapp.eatit_server"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "551027991310-hftbaaddaabk2s01s8m2kbg8nab27igh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kuvaev.mainapp.eatit_server",
-            "certificate_hash": "2cd17b1b67cd5d8f34b33ce99c539e4242a75918"
-          }
-        },
-        {
-          "client_id": "551027991310-p1apep4q7q5hags6bmijf6crdmb8k2di.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAEyu5ZGgoNvmIo7N4hMak8j2v0YLqGdmA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "551027991310-p1apep4q7q5hags6bmijf6crdmb8k2di.apps.googleusercontent.com",
+              "client_id": "783270230740-r9goudc1h2ls9nsuomn5bnhad8enevm6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
