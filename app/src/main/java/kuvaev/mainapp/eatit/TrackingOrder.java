@@ -1,7 +1,6 @@
 package kuvaev.mainapp.eatit;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.developer.kalert.KAlertDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -356,14 +356,13 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
     public void onCancelled(@NonNull DatabaseError databaseError) {}
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
-        AlertDialog mDialog = new SpotsDialog( TrackingOrder.this);
+        KAlertDialog mDialog = new KAlertDialog(TrackingOrder.this);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mDialog.show();
             mDialog.setMessage("Please waiting...");
-
         }
 
         @Override

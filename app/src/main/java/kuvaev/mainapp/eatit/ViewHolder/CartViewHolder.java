@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kuvaev.mainapp.eatit.Common.Common;
+import kuvaev.mainapp.eatit.Component.ElegantNumberButton;
 import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.R;
 

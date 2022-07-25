@@ -7,6 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,37 +25,34 @@
     android:supportsRtl="true"
     tools:replace="android:theme">
     <activity
-        android:name=".FoodListActivity"
+        android:name=".FoodList"
         android:exported="false" />
     <activity
-        android:name=".FoodDetailActivity"
+        android:name=".FoodDetail"
         android:exported="false" />
     <activity
         android:name=".Home"
         android:exported="false" />
     <activity
-        android:name=".SignUpActivity"
+        android:name=".SignIn"
         android:exported="false" />
     <activity
-        android:name=".SignInActivity"
+        android:name=".Cart"
         android:exported="false" />
     <activity
-        android:name=".CartActivity"
+        android:name=".FavoritesActivity"
         android:exported="false" />
     <activity
-        android:name=".FavouritesActivity"
-        android:exported="false" />
-    <activity
-        android:name=".OrderStatusActivity"
+        android:name=".OrderStatus"
         android:exported="false" />
     <activity
         android:name=".SearchActivity"
         android:exported="false" />
     <activity
-        android:name=".ShowCommentActivity"
+        android:name=".ShowComment"
         android:exported="false" />
     <activity
-        android:name=".TrackingOrderActivity"
+        android:name=".TrackingOrder"
         android:exported="false" />
     <activity
         android:name=".MainActivity"

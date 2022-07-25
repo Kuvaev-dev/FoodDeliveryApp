@@ -78,14 +78,15 @@
                 android:text="@string/cl_food_cost"/>
         </LinearLayout>
 
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        <kuvaev.mainapp.eatit.Component.ElegantNumberButton
             android:id="@+id/btn_quantity"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_margin="10dp"
-            app:backGroundColor="@color/fbutton_color_green_sea"
+            app:backgroundDrawable="@color/fbutton_color_green_sea"
             app:finalNumber="20"
             app:initialNumber="1"
-            app:textSize="8sp" />
+            app:textSize="11sp"
+            android:background="@color/fbutton_color_green_sea"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

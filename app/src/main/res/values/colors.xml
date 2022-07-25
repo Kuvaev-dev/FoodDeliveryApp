@@ -35,6 +35,5 @@
     <color name="colorYellow1">#ffff00</color>
     <color name="colorYellow2">#eeee00</color>
 
-
-
+    <color name="colorText">#FFFFFF</color>
 </resources>

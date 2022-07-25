@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -27,16 +26,19 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,8 +78,7 @@ import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class Cart extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener, RecyclerItemTouchHelperListener {
+public class Cart extends AppCompatActivity implements LocationListener, RecyclerItemTouchHelperListener {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -94,9 +95,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
     String address;
 
-    // location
-    private LocationRequest mLocationRequest;
-    private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
 
     private static final int UPDATE_INTERVAL = 5000;
@@ -147,7 +145,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         mGoogleMapService = Common.getGoogleMapAPI();
 
         // init rootlayout
-        rootLayout = (RelativeLayout)findViewById(R.id.rootLayout);
+        rootLayout = findViewById(R.id.rootLayout);
 
         // Init service
         mService = Common.getFCMService();
@@ -157,7 +155,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         requests = database.getReference("Requests");
 
         // Init
-        recyclerView = (RecyclerView)findViewById(R.id.listCart);
+        recyclerView = findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -166,8 +164,8 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
-        txtTotalPrice = (TextView)findViewById(R.id.total);
-        btnPlace = (FButton)findViewById(R.id.btnPlaceOrder);
+        txtTotalPrice = findViewById(R.id.total);
+        btnPlace = findViewById(R.id.btnPlaceOrder);
 
         btnPlace.setOnClickListener(v -> {
             if (cart.size() > 0)
@@ -176,31 +174,30 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 Toast.makeText(Cart.this, "Your cart is empty.", Toast.LENGTH_SHORT).show();
         });
 
+        displayLocation();
+        startLocationUpdates();
         loadListFood();
     }
 
     private void createLocationRequest() {
-        mLocationRequest = new LocationRequest();
+        // location
+        LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setInterval(UPDATE_INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setPriority(Priority.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
     }
 
     private synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API).build();
-
-        mGoogleApiClient.connect();
+        GoogleSignInOptions mGoogleOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build();
+        GoogleSignInClient mGoogleClient = GoogleSignIn.getClient(this, mGoogleOptions);
     }
 
     private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
         if (resultCode != ConnectionResult.SUCCESS) {
-            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode))
-                Objects.requireNonNull(GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_REQUEST)).show();
+            if (GoogleApiAvailability.getInstance().isUserResolvableError(resultCode))
+                Objects.requireNonNull(GoogleApiAvailability.getInstance().getErrorDialog(this, resultCode, PLAY_SERVICES_REQUEST)).show();
             else {
                 Toast.makeText(this, "This device is not supported.", Toast.LENGTH_SHORT).show();
                 finish();
@@ -218,36 +215,37 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
        LayoutInflater inflater = this.getLayoutInflater();
        View order_address_comment = inflater.inflate(R.layout.order_address_comment, null);
 
-       final PlaceAutocompleteFragment edtAddress = (PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+       final AutocompleteSupportFragment edtAddress = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
        // Hide search icon before fragment
-       edtAddress.getView().findViewById(R.id.place_autocomplete_search_button).setVisibility(View.GONE);
+        assert edtAddress != null;
+        edtAddress.requireView().findViewById(R.id.place_autocomplete_search_button).setVisibility(View.GONE);
 
        // set hint for Autocomplete EditText
-       ((EditText)edtAddress.getView().findViewById(R.id.place_autocomplete_search_input)).setHint("Enter your address");
+       ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input)).setHint("Enter your address");
 
        // set text size
-       ((EditText)edtAddress.getView().findViewById(R.id.place_autocomplete_search_input)).setTextSize(14);
+       ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input)).setTextSize(14);
 
        // get address from place autocomplete
        edtAddress.setOnPlaceSelectedListener(new PlaceSelectionListener() {
            @Override
-           public void onPlaceSelected(Place place) {
-               shippingAddress = place;
+           public void onError(@NonNull Status status) {
+               Log.e("ERROR",status.getStatusMessage());
            }
 
            @Override
-           public void onError(Status status) {
-               Log.e("ERROR",status.getStatusMessage());
+           public void onPlaceSelected(@NonNull com.google.android.libraries.places.api.model.Place place) {
+               shippingAddress = (Place) place;
            }
        });
 
-      final MaterialEditText edtComment = (MaterialEditText)order_address_comment.findViewById(R.id.edtComment);
+      final MaterialEditText edtComment = order_address_comment.findViewById(R.id.edtComment);
 
         // radio button
-        final RadioButton rdyShipToAddress = (RadioButton)order_address_comment.findViewById(R.id.rdyShipToAddress);
-        final RadioButton rdyHomeAddress = (RadioButton)order_address_comment.findViewById(R.id.rdyHomeAddress);
-        final RadioButton cashOnDelivery = (RadioButton)order_address_comment.findViewById(R.id.cashOnDelivery);
+        final RadioButton rdyShipToAddress = order_address_comment.findViewById(R.id.rdyShipToAddress);
+        final RadioButton rdyHomeAddress = order_address_comment.findViewById(R.id.rdyHomeAddress);
+        final RadioButton cashOnDelivery = order_address_comment.findViewById(R.id.cashOnDelivery);
 
         // radio event
         rdyHomeAddress.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -255,7 +253,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 if (Common.currentUser.getHomeAddress() != null ||
                         !TextUtils.isEmpty(Common.currentUser.getHomeAddress())) {
                     address = Common.currentUser.getHomeAddress();
-                    ((EditText)edtAddress.getView().findViewById(R.id.place_autocomplete_search_input))
+                    ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input))
                             .setText(address);
                 } else {
                     Toast.makeText(Cart.this, "Please Update Home Address!", Toast.LENGTH_SHORT).show();
@@ -274,13 +272,13 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                             public void onResponse(Call<String> call, Response<String> response) {
                                 // if fetch API ok
                                 try {
-                                    JSONObject jsonObject = new JSONObject(response.body().toString());
+                                    JSONObject jsonObject = new JSONObject(response.body());
                                     JSONArray resultArray = jsonObject.getJSONArray("results");
                                     JSONObject firstObject = resultArray.getJSONObject(0);
                                     address = firstObject.getString("formatted_address");
 
                                     //set this address to edtAddress
-                                    ((EditText)edtAddress.getView().findViewById(R.id.place_autocomplete_search_input))
+                                    ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input))
                                             .setText(address);
 
                                 } catch (JSONException e) {
@@ -395,6 +393,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
                     // create raw payload to send
                     Notification notification = new Notification("iDelivery", "You have new order " + order_number);
+                    assert serverToken != null;
                     Sender content = new Sender(serverToken.getToken(), notification);
 
                     mService.sendNotification(content).enqueue(new Callback<MyResponse>() {
@@ -465,43 +464,25 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         loadListFood();
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-        displayLocation();
-        startLocationUpdates();
-    }
-
     private void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             return;
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        LocationServices.getFusedLocationProviderClient(this).getLastLocation();
     }
 
     private void displayLocation() {
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             return;
         }
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        mLastLocation = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
         if (mLastLocation != null) {
            Log.d("LOCATION", "Your location : " + mLastLocation.getLatitude() + "," + mLastLocation.getLongitude());
         } else {
             Log.d("LOCATION", "Could not get your location.");
         }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 
     @Override

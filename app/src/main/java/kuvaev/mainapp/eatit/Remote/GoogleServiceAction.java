@@ -7,6 +7,9 @@ import retrofit2.http.Url;
 
 public interface GoogleServiceAction {
     @GET
+    Call<String> getAddressName(@Url String url);
+
+    @GET
     Call<String> getLocationFromAddress(@Url String url);
 
     @GET("maps/api/directions/json?key=yourKey&sensor=true&language=en&mode=driving")

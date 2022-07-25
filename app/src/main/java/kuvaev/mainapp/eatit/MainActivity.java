@@ -1,6 +1,5 @@
 package kuvaev.mainapp.eatit;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.developer.kalert.KAlertDialog;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         users = database.getReference("User");
 
-        btnContinue = (Button) findViewById(R.id.btn_continue);
+        btnContinue = findViewById(R.id.btn_continue);
         btnContinue.setOnClickListener(view -> startLoginSystem());
 
          // check session facebook account kit
          if (AccountKit.getCurrentAccessToken() != null) {
-         final AlertDialog waitingDialog = new SpotsDialog(this);
+         final KAlertDialog waitingDialog = new KAlertDialog(this);
          waitingDialog.show();
          waitingDialog.setMessage("Please wait...");
          waitingDialog.setCancelable(false);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(LoginType.PHONE,
                         AccountKitActivity.ResponseType.TOKEN);
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configurationBuilder.build());
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivityIfNeeded(intent, REQUEST_CODE);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
             } else {
                 if (result.getAccessToken() != null) {
-                    final AlertDialog waitingDialog = new SpotsDialog(this);
+                    final KAlertDialog waitingDialog = new KAlertDialog(this);
                     waitingDialog.show();
                     waitingDialog.setMessage("Please wait...");
                     waitingDialog.setCancelable(false);

@@ -106,4 +106,6 @@
     <string name="scl_food_name">Food 01</string>
     <string name="scl_food_cost">RM 9.90</string>
     <string name="uul_username">Username</string>
+    <string name="lenb_minus">-</string>
+    <string name="lenb_plus">+</string>
 </resources>

@@ -15,6 +15,7 @@ import java.util.Locale;
 
 import kuvaev.mainapp.eatit.Cart;
 import kuvaev.mainapp.eatit.Common.Common;
+import kuvaev.mainapp.eatit.Component.ElegantNumberButton;
 import kuvaev.mainapp.eatit.Database.Database;
 import kuvaev.mainapp.eatit.Model.Order;
 import kuvaev.mainapp.eatit.R;
@@ -45,23 +46,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
                 .into(holder.cart_image);
 
         holder.btn_quantity.setNumber(listData.get(holder.getBindingAdapterPosition()).getQuantity());
-        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                Order order = listData.get(holder.getBindingAdapterPosition());
-                order.setQuantity(String.valueOf(newValue));
-                new Database(cart).updateCart(order);
+        holder.btn_quantity.setOnValueChangeListener((ElegantNumberButton.OnValueChangeListener) (view, oldValue, newValue) -> {
+            Order order = listData.get(holder.getBindingAdapterPosition());
+            order.setQuantity(String.valueOf(newValue));
+            new Database(cart).updateCart(order);
 
-                //update txttotal
-                //calculation total price
-                float total = 0;
-                List<Order> orders = new Database(cart).getCarts(Common.currentUser.getPhone());
-                for(Order item:orders)
-                    total +=(Float.parseFloat(item.getPrice()))*(Integer.parseInt(item.getQuantity()));
-                Locale locale = new Locale("en","MY");
-                NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-                cart.txtTotalPrice.setText(fmt.format(total));
-            }
+            //update txttotal
+            //calculation total price
+            float total = 0;
+            List<Order> orders = new Database(cart).getCarts(Common.currentUser.getPhone());
+            for(Order item:orders)
+                total +=(Float.parseFloat(item.getPrice()))*(Integer.parseInt(item.getQuantity()));
+            Locale locale = new Locale("en","MY");
+            NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+            cart.txtTotalPrice.setText(fmt.format(total));
         });
 
         Locale locale = new Locale("en","MY");

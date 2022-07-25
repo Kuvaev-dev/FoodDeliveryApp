@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,13 +54,13 @@ public class DirectionJSONParser {
                     for (int k = 0; k < jSteps.length(); k++) {
                         String polyline;
                         polyline = (String) ((JSONObject) ((JSONObject) jSteps.get(k)).get("polyline")).get("points");
-                        List list = decodePoly(polyline);
+                        List<LatLng> list = decodePoly(polyline);
 
                         /* Traversing all points */
                         for (int l = 0; l < list.size(); l++) {
                             HashMap<String, String> hm = new HashMap<>();
-                            hm.put("lat", Double.toString(((LatLng) list.get(l)).latitude));
-                            hm.put("lng", Double.toString(((LatLng) list.get(l)).longitude));
+                            hm.put("lat", Double.toString(list.get(l).latitude));
+                            hm.put("lng", Double.toString(list.get(l).longitude));
                             path.add(hm);
                         }
                     }
@@ -77,14 +76,6 @@ public class DirectionJSONParser {
                     Common.DURATION = hours + " hours " + minutes + " mins " + seconds + " seconds ";
 
                     SimpleDateFormat DBFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                    String currentDateandTime = DBFormat.format(new Date());
-
-                    Date date = null;
-                    try {
-                        date = DBFormat.parse(currentDateandTime);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
 
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(getFormatDate());

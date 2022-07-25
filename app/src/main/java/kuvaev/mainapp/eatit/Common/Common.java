@@ -17,7 +17,6 @@ public class Common {
 
     public static User currentUser;
     public static String currentKey;
-    public static final String SHIPPER_INFO_TABLE = "ShippingOrders";
 
     public static String DISTANCE= "";
     public static String DURATION= "";
