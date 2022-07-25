@@ -85,6 +85,7 @@ dependencies {
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.github.vimalcvs:Material-Smart-Rating:3.0.0'
     implementation 'com.github.TutorialsAndroid:KAlertDialog:v14.0.19'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter'
