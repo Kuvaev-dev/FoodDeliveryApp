@@ -65,12 +65,12 @@ public class ShowComment extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         ratingDb = database.getReference("Rating");
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_comment);
+        recyclerView = findViewById(R.id.recycler_comment);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // swipe layout
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             if (getIntent() != null)
                 foodId = getIntent().getStringExtra(Common.INTENT_FOOD_ID);

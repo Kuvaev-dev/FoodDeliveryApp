@@ -58,13 +58,13 @@ public class SignIn extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_in);
 
-        edtPhone = (MaterialEditText)findViewById(R.id.edtPhone);
-        edtPassword = (MaterialEditText)findViewById(R.id.edtPassword);
+        edtPhone = findViewById(R.id.edtPhone);
+        edtPassword = findViewById(R.id.edtPassword);
         edtPassword.setInputType(InputType.TYPE_CLASS_TEXT |
                 InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        btnSignIn = (Button)findViewById(R.id.btnSignIn);
-        ckbRemember = (CheckBox)findViewById(R.id.ckbRemember);
-        txtForgotPwd = (TextView)findViewById(R.id.txtForgotPwd);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        ckbRemember = findViewById(R.id.ckbRemember);
+        txtForgotPwd = findViewById(R.id.txtForgotPwd);
 
         // Init paper
         Paper.init(this);
@@ -140,8 +140,8 @@ public class SignIn extends AppCompatActivity {
         builder.setView(forgot_view);
         builder.setIcon(R.drawable.ic_security_black_24dp);
 
-        final MaterialEditText edtPhone = (MaterialEditText)forgot_view.findViewById(R.id.edtPhone);
-        final MaterialEditText edtSecureCode = (MaterialEditText)forgot_view.findViewById(R.id.edtSecureCode);
+        final MaterialEditText edtPhone = forgot_view.findViewById(R.id.edtPhone);
+        final MaterialEditText edtSecureCode = forgot_view.findViewById(R.id.edtSecureCode);
 
         builder.setPositiveButton("YES", (dialog, which) -> {
             // check if user still available

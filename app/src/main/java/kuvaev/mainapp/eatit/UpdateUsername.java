@@ -41,8 +41,8 @@ public class UpdateUsername extends AppCompatActivity {
 
         setContentView(R.layout.activity_update_username);
 
-        username = (MaterialEditText)findViewById(R.id.edtUsername);
-        confirm = (FButton)findViewById(R.id.btnConfirm);
+        username = findViewById(R.id.edtUsername);
+        confirm = findViewById(R.id.btnConfirm);
 
         confirm.setOnClickListener(v -> showConfirmDialog());
     }

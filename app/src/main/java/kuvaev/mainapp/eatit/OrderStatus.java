@@ -58,7 +58,7 @@ public class OrderStatus extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
 
-        recyclerView = (RecyclerView)findViewById(R.id.listOrders);
+        recyclerView = findViewById(R.id.listOrders);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

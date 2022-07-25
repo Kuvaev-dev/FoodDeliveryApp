@@ -108,4 +108,5 @@
     <string name="uul_username">Username</string>
     <string name="lenb_minus">-</string>
     <string name="lenb_plus">+</string>
+    <string name="image_selected_string">Image Selected!</string>
 </resources>

@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.developer.kalert.KAlertDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.hoang8f.widget.FButton;
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Common.DirectionJSONParser;
@@ -99,10 +99,10 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
         shippingOrder.addValueEventListener(this);
 
         mService = Common.getGoogleMapAPI();
-        distance = (TextView)findViewById(R.id.display_distance);
-        duration = (TextView)findViewById(R.id.display_duration);
-        time = (TextView)findViewById(R.id.display_expected_hour);
-        btn_call = (FButton) findViewById(R.id.btnCall);
+        distance = findViewById(R.id.display_distance);
+        duration = findViewById(R.id.display_duration);
+        time = findViewById(R.id.display_expected_hour);
+        btn_call = findViewById(R.id.btnCall);
 
       btn_call.setOnClickListener(v -> shippingOrder.child(Common.currentKey).addListenerForSingleValueEvent(new ValueEventListener() {
           @Override
@@ -356,13 +356,13 @@ public class TrackingOrder extends FragmentActivity implements OnMapReadyCallbac
     public void onCancelled(@NonNull DatabaseError databaseError) {}
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
-        KAlertDialog mDialog = new KAlertDialog(TrackingOrder.this);
+        SweetAlertDialog mDialog = new SweetAlertDialog(TrackingOrder.this);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mDialog.show();
-            mDialog.setMessage("Please waiting...");
+            mDialog.setTitle("Please waiting...");
         }
 
         @Override

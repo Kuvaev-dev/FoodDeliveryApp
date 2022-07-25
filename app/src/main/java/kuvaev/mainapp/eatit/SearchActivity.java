@@ -120,12 +120,12 @@ public class SearchActivity extends AppCompatActivity {
         // local Database
         localDB = new Database(this);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_search);
+        recyclerView = findViewById(R.id.recycler_search);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // search
-        materialSearchBar = (MaterialSearchBar)findViewById(R.id.searchBar);
+        materialSearchBar = findViewById(R.id.searchBar);
         materialSearchBar.setHint("Enter your food");
 
         // write function to load suggest from firebase

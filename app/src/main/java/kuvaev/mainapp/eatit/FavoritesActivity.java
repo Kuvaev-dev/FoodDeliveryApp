@@ -46,9 +46,9 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerItem
                 .build());
         setContentView(R.layout.activity_favorites);
 
-        rootLayout = (RelativeLayout)findViewById(R.id.root_layout);
+        rootLayout = findViewById(R.id.root_layout);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_fav);
+        recyclerView = findViewById(R.id.recycler_fav);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 

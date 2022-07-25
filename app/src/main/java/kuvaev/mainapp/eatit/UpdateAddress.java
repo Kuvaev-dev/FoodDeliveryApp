@@ -41,8 +41,8 @@ public class UpdateAddress extends AppCompatActivity {
 
         setContentView(R.layout.activity_update_address);
 
-        address = (MaterialEditText)findViewById(R.id.edtHomeAddress);
-        confirm = (FButton)findViewById(R.id.btnConfirmAddress);
+        address = findViewById(R.id.edtHomeAddress);
+        confirm = findViewById(R.id.btnConfirmAddress);
 
         confirm.setOnClickListener(v -> showConfirmDialog());
     }

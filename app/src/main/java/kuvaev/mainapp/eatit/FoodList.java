@@ -124,7 +124,7 @@ public class FoodList extends AppCompatActivity {
         // local Database
         localDB = new Database(this);
 
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
@@ -156,7 +156,7 @@ public class FoodList extends AppCompatActivity {
             }
         });
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_food);
+        recyclerView = findViewById(R.id.recycler_food);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -174,7 +174,7 @@ public class FoodList extends AppCompatActivity {
         }
 
         // search
-        materialSearchBar = (MaterialSearchBar)findViewById(R.id.searchBar);
+        materialSearchBar = findViewById(R.id.searchBar);
         materialSearchBar.setHint("Enter your food");
 
         // write function to load suggest from firebase

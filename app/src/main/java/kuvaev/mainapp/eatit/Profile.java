@@ -66,9 +66,9 @@ public class Profile extends AppCompatActivity {
 
         loadProfile();
 
-        btnUpdateHomeAddress = (FButton)findViewById(R.id.btn_updateAddress);
-        btnUpdateUsername = (FButton)findViewById(R.id.btn_updateUsername);
-        profile_pic = (CircularImageView) findViewById(R.id.profile_picture);
+        btnUpdateHomeAddress = findViewById(R.id.btn_updateAddress);
+        btnUpdateUsername = findViewById(R.id.btn_updateUsername);
+        profile_pic = findViewById(R.id.profile_picture);
         profile_pic.setBorderColor(getResources().getColor(R.color.fbutton_color_green_sea));
         profile_pic.setBorderWidth(2);
 
@@ -123,7 +123,7 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), Common.PICK_IMAGE_REQUEST);
+        startActivityIfNeeded(Intent.createChooser(intent, "Select Image"), Common.PICK_IMAGE_REQUEST);
     }
 
 
@@ -135,7 +135,7 @@ public class Profile extends AppCompatActivity {
                 && data.getData()!= null){
 
             saveUri = data.getData();
-            btnSelect.setText("Image Selected!");
+            btnSelect.setText(R.string.image_selected_string);
         }
     }
 
@@ -180,9 +180,9 @@ public class Profile extends AppCompatActivity {
             }
         };
 
-        profile_name = (TextView) findViewById(R.id.profile_name);
-        profile_phone = (TextView) findViewById(R.id.profile_phone);
-        profile_address = (TextView)findViewById(R.id.profile_address);
+        profile_name = findViewById(R.id.profile_name);
+        profile_phone = findViewById(R.id.profile_phone);
+        profile_address = findViewById(R.id.profile_address);
 
         profile_name.setText(Common.currentUser.getName());
         profile_address.setText(Common.currentUser.getHomeAddress());

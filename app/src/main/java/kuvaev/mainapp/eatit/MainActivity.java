@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.developer.kalert.KAlertDialog;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
@@ -24,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Model.User;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
          // check session facebook account kit
          if (AccountKit.getCurrentAccessToken() != null) {
-         final KAlertDialog waitingDialog = new KAlertDialog(this);
+         final SweetAlertDialog waitingDialog = new SweetAlertDialog(this);
          waitingDialog.show();
-         waitingDialog.setMessage("Please wait...");
+         waitingDialog.setTitle("Please wait...");
          waitingDialog.setCancelable(false);
 
          AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
@@ -118,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
             } else {
                 if (result.getAccessToken() != null) {
-                    final KAlertDialog waitingDialog = new KAlertDialog(this);
+                    final SweetAlertDialog waitingDialog = new SweetAlertDialog(this);
                     waitingDialog.show();
-                    waitingDialog.setMessage("Please wait...");
+                    waitingDialog.setTitle("Please wait...");
                     waitingDialog.setCancelable(false);
 
                     // get current phone

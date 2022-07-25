@@ -17,7 +17,6 @@ import java.util.List;
 import kuvaev.mainapp.eatit.Common.Common;
 import kuvaev.mainapp.eatit.Database.Database;
 import kuvaev.mainapp.eatit.FoodDetail;
-import kuvaev.mainapp.eatit.Interface.ItemClickListener;
 import kuvaev.mainapp.eatit.Model.Favorites;
 import kuvaev.mainapp.eatit.Model.Order;
 import kuvaev.mainapp.eatit.R;
@@ -64,7 +63,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
             Toast.makeText(context, "Added to Cart", Toast.LENGTH_SHORT).show();
         });
 
-        viewHolder.setItemClickListener((ItemClickListener) (view, position1, isLongClick) -> {
+        viewHolder.setItemClickListener((view, position1, isLongClick) -> {
             //start new activity
             Intent foodDetail = new Intent(context, FoodDetail.class);
             foodDetail.putExtra("FoodId", favoritesList.get(position1).getFoodId()); //send FoodId to new activity

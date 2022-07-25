@@ -36,9 +36,9 @@ public class ContactUs extends AppCompatActivity {
 
         setContentView(R.layout.activity_contact_us);
 
-        image_call = (ImageView)findViewById(R.id.image_call);
-        image_mail = (ImageView)findViewById(R.id.image_mail);
-        image_facebook = (ImageView)findViewById(R.id.image_facebook);
+        image_call = findViewById(R.id.image_call);
+        image_mail = findViewById(R.id.image_mail);
+        image_facebook = findViewById(R.id.image_facebook);
 
         image_call.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);

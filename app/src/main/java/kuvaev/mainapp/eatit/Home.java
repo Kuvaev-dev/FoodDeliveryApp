@@ -94,13 +94,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         // for first-time login, pop up notification to complete profile.
         sharedPreferences = getSharedPreferences("kuvaev.mainapp.eatit", MODE_PRIVATE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
         // Init SwipeRefreshLayout view
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
@@ -159,7 +159,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         Paper.init(this);
 
-        fab = (CounterFab)findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Intent cartIntent = new Intent(Home.this, Cart.class);
             startActivity(cartIntent);
@@ -167,22 +167,22 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         fab.setCount(new Database(this).getCountCart(Common.currentUser.getPhone()));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // set name for user at navigation header
         View headerView = navigationView.getHeaderView(0);
-        txtFullName = (TextView)headerView.findViewById(R.id.txtFullName);
+        txtFullName = headerView.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
 
         // Load menu
-        recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
+        recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setLayoutManager(new GridLayoutManager(this,2));
         LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(recycler_menu.getContext(),
                 R.anim.layout_fall_down);
@@ -195,7 +195,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void setupSlider() {
-        sliderLayout = (SliderLayout)findViewById(R.id.slider);
+        sliderLayout = findViewById(R.id.slider);
         image_list = new HashMap<>();
 
         final DatabaseReference banners = database.getReference("Banner");
@@ -309,7 +309,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -363,7 +363,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(contactIntent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -400,7 +400,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         LayoutInflater inflater = LayoutInflater.from(this);
         View layout_setting = inflater.inflate(R.layout.setting_layout, null);
 
-        final CheckBox ckb_sub_new = (CheckBox)layout_setting.findViewById(R.id.ckb_sub_new);
+        final CheckBox ckb_sub_new = layout_setting.findViewById(R.id.ckb_sub_new);
         // remember checkbox
         Paper.init(this);
         String isSubscribe = Paper.book().read("sub_new");
