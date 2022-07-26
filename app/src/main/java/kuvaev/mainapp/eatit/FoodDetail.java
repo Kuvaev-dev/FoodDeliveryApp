@@ -140,7 +140,7 @@ public class FoodDetail extends AppCompatActivity {
                     count++;
                 }
                 if (count != 0){
-                    float average = sum / count;
+                    int average = sum / count;
                     ratingBar.setRating(average);
                 }
             }

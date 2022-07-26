@@ -160,7 +160,7 @@ public class Profile extends AppCompatActivity {
                 mDialog.dismiss();
                 Toast.makeText(Profile.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }).addOnProgressListener(taskSnapshot -> {
-                double progress = (100 * taskSnapshot.getBytesTransferred() /taskSnapshot.getTotalByteCount());
+                int progress = (int) (100 * taskSnapshot.getBytesTransferred() /taskSnapshot.getTotalByteCount());
                 mDialog.setMessage("Uploading" + progress +" % ");
             });
         }

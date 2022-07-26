@@ -37,6 +37,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -219,13 +220,13 @@ public class Cart extends AppCompatActivity implements LocationListener, Recycle
 
        // Hide search icon before fragment
         assert edtAddress != null;
-        edtAddress.requireView().findViewById(R.id.place_autocomplete_search_button).setVisibility(View.GONE);
+        edtAddress.requireView().findViewById(com.google.android.gms.location.places.R.id.place_autocomplete_search_button).setVisibility(View.GONE);
 
        // set hint for Autocomplete EditText
-       ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input)).setHint("Enter your address");
+       ((EditText) edtAddress.requireView().findViewById(com.google.android.gms.location.places.R.id.place_autocomplete_search_input)).setHint("Enter your address");
 
        // set text size
-       ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input)).setTextSize(14);
+       ((EditText) edtAddress.requireView().findViewById(com.google.android.gms.location.places.R.id.place_autocomplete_search_input)).setTextSize(14);
 
        // get address from place autocomplete
        edtAddress.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -253,7 +254,7 @@ public class Cart extends AppCompatActivity implements LocationListener, Recycle
                 if (Common.currentUser.getHomeAddress() != null ||
                         !TextUtils.isEmpty(Common.currentUser.getHomeAddress())) {
                     address = Common.currentUser.getHomeAddress();
-                    ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input))
+                    ((EditText) edtAddress.requireView().findViewById(com.google.android.gms.location.places.R.id.place_autocomplete_search_input))
                             .setText(address);
                 } else {
                     Toast.makeText(Cart.this, "Please Update Home Address!", Toast.LENGTH_SHORT).show();
@@ -278,7 +279,7 @@ public class Cart extends AppCompatActivity implements LocationListener, Recycle
                                     address = firstObject.getString("formatted_address");
 
                                     //set this address to edtAddress
-                                    ((EditText) edtAddress.requireView().findViewById(R.id.place_autocomplete_search_input))
+                                    ((EditText) edtAddress.requireView().findViewById(com.google.android.gms.location.places.R.id.place_autocomplete_search_input))
                                             .setText(address);
 
                                 } catch (JSONException e) {
@@ -477,7 +478,7 @@ public class Cart extends AppCompatActivity implements LocationListener, Recycle
                 (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             return;
         }
-        mLastLocation = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
+        Task<Location> mGetLastLocation = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
         if (mLastLocation != null) {
            Log.d("LOCATION", "Your location : " + mLastLocation.getLatitude() + "," + mLastLocation.getLongitude());
         } else {
